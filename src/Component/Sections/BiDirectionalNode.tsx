@@ -6,19 +6,39 @@ import {
   Position,
 } from '@xyflow/react';
 
- 
- 
-const BiDirectionalNode = ({ data }: NodeProps<BuiltInNode>) => {
+const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { id: string; edges: any[] }) => {
+  // Calculate incoming and outgoing edges
+  const incomingEdges = edges.filter((edge) => edge.target === id);
+  const outgoingEdges = edges.filter((edge) => edge.source === id);
+
+  // Connection limits
+  const maxIncomingConnections = 1; // Maximum incoming connections allowed
+  const maxOutgoingConnections = 1; // Maximum outgoing connections allowed
+
+  const incomingConnectionCount = incomingEdges.length;
+  const outgoingConnectionCount = outgoingEdges.length;
+
   return (
-    <div className='BiDirNode' style = {{
-      fontSize: '14px', 
-      padding: '10px', 
-      cursor: 'pointer', }}>
-      <Handle type="target" position={Position.Left} id="left" />
+    <div className='MonoDirNode' style={{
+      fontSize: '14px',
+      padding: '10px',
+      cursor: 'pointer'
+    }}>
+      <Handle
+        type="target"
+        position={Position.Top}
+        id="left"
+        isConnectable={incomingConnectionCount < maxIncomingConnections} // Enable only if below limit
+      />
       {data?.label}
-      <Handle type="source" position={Position.Right} id="right" />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        id="right"
+        isConnectable={outgoingConnectionCount < maxOutgoingConnections} // Enable only if below limit
+      />
     </div>
   );
 };
- 
+
 export default memo(BiDirectionalNode);

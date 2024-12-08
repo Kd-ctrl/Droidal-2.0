@@ -7,7 +7,7 @@ const buttonProperties = {
       label: 'For',
       nodeProps: {
         data: { label: 'For'},
-        type:'monodir',
+        type:'bidirectional',
         style: { backgroundColor: 'lightblue' },
       },
     },
@@ -23,7 +23,7 @@ const buttonProperties = {
       label: 'Else',
       nodeProps: {
         data: { label: 'else' },
-        type:'monodir',
+        type:'bidirectional',
         style: { backgroundColor: 'lightcoral'},
       },
     },
@@ -31,36 +31,27 @@ const buttonProperties = {
       label: 'While',
       nodeProps: {
         data: { label: 'While' },
-        type:'monodir',
+        type:'bidirectional',
         style: {backgroundColor: 'lightcoral'},
         values:{value :"while"},
       },
     }, 
   },
     DesktopActivities:{
+
     addNode5: {
-      
-      label: 'Start',
-      nodeProps: {
-        data: {label: 'start' },
-        type:'monodir',
-        style: {backgroundColor: 'lightgreen'},
-        values:{value:"start"}
-      },
-    },
-    addNode6: {
       label: 'Open Browser',
       nodeProps: {
-        type:'monodir',
+        type:'bidirectional',
         data: { label: 'Open Browser',...buttonContent.OpenBrowser },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.OpenBrowser },
       },
     },
-    addNode7: {
+    addNode6: {
       label: 'Element Wait',
       nodeProps: {
-        type:'monodir',
+        type:'bidirectional',
         data: { label: 'Element Wait',...buttonContent.ElementWait },
         style: {backgroundColor: 'lightblue'},
       },
@@ -68,7 +59,7 @@ const buttonProperties = {
     addNode8: {
       label: 'Click',
       nodeProps: {
-        type:'monodir',
+        type:'bidirectional',
         data: { label: 'Click',...buttonContent.Click },
         style: {backgroundColor: 'lightblue'},
       },
@@ -76,7 +67,7 @@ const buttonProperties = {
     addNode9: {
       label: 'Type Into',
       nodeProps: {
-        type:'monodir',
+        type:'bidirectional',
         data: { label: 'Type Into',...buttonContent.TypeInto },
         style: {backgroundColor: 'lightblue'},
       },
