@@ -2,7 +2,7 @@ import buttonContent from "./ButtonContent";
 import buttonValue from "./ButtonValues";
 
 const buttonProperties = {
-  Webactivities:{
+  "Web Activities":{
     addNode1: {
       label: 'For',
       nodeProps: {
@@ -37,7 +37,7 @@ const buttonProperties = {
       },
     }, 
   },
-  Test_Activities:{
+  "Test Activities":{
     addNodea: {
       label: 'Open Browser',
       nodeProps: {
@@ -53,6 +53,7 @@ const buttonProperties = {
         type:'bidirectional',
         data: { label: 'Element Wait',...buttonContent.ElementWait },
         style: {backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.ElementWait },
       },
     },
   },
@@ -73,6 +74,7 @@ const buttonProperties = {
         type:'bidirectional',
         data: { label: 'Element Wait',...buttonContent.ElementWait },
         style: {backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.ElementWait },
       },
     },
     addNode8: {
@@ -81,6 +83,7 @@ const buttonProperties = {
         type:'bidirectional',
         data: { label: 'Click',...buttonContent.Click },
         style: {backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.Click },
       },
     },
     addNode9: {
@@ -89,6 +92,7 @@ const buttonProperties = {
         type:'bidirectional',
         data: { label: 'Type Into',...buttonContent.TypeInto },
         style: {backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.TypeInto },
       },
     },
   },

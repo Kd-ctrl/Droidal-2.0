@@ -293,7 +293,7 @@ const changesize=()=>{
         
         {selectedNode ? (
           <>
-        <SideBarProperties selectedNode = {selectedNode} updateNodeProperties={updateNodeProperties}/>
+        <SideBarProperties selectedNode = {selectedNode} updateNodeProperties={updateNodeProperties} changeSize = {changesize}/>
         <div><Button variant="primary" onClick={onPaneClick}>Save</Button></div>
         {/* <div><Button variant="primary">Primary</Button></div> */}
         </>): 

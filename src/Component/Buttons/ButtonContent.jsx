@@ -3,36 +3,48 @@ const buttonContent = {
  
  //ButtonValue Provides the data for backend json
 
+
+
+
+ //driver, comment
     OpenBrowser:{
         "Browser Type": {"options":["Chrome","Edge"],"type":"select", "value":""},
         "Enter URL": {"value":""},
         "Browser Width": {"options":["Default","Full Width"],"type":"select", "value":""},
         "Delay (in Seconds)": {"value":""},
+        "Comment": "",
+        "Breakpoint": "",
     },
     ElementWait:{
         "driver": "driver",
-        "Selectortype": "By.XPATH",
-        "value": "/html/body/div[2]/form/div[1]/div/div[2]/div[1]/input",
-        "timeout": "50",
-        "outputvariable": "pageload",
-        "content_desc": "Description",
+        "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
+        "Enter Value": {"value":""},
+        "Enter Timeout":{"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+        "Comment": "",
+        "Breakpoint": "",
     },
     Click:{
-        "Selectortype": "By.XPATH",
-        "Selectortool": "xpath",
-        "Value": "/html/body/div[2]/form/div[1]/div/div[2]/div[1]/input",
-        "delay": "1",
+        "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
+        "Selector Tool": {"options":["X Path Selector"],"type":"select", "value":""},
+        "Enter Text": {"value":""},
+        "Delay (in Seconds)": {"value":""},
         "driver": "driver",
-        "content_desc": "practice staff",
+        "Description": {"value":""},
+        "Comment": "",
+        "Breakpoint": "",
     },
     TypeInto:{
-        "Selectortype": "By.XPATH",
-        "Selectortool": "xpath",
-        "Value": "/html/body/div/div[2]/div/form/div[2]/div/div[2]/div[1]/input",
-        "SendKeyvalues": "`jrajendran`",
-        "delay": "1",
+        "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
+        "Selector Tool": {"options":["X Path Selector"],"type":"select", "value":""},
+        "Enter Text": {"value":""},
+        "Enter Send Key Value": {"value":""},
+        "Delay (in Seconds)":  {"value":""},
         "driver": "driver",
-        "content_desc": "username",
+        "Description":  {"value":""},
+        "Comment": "",
+        "Breakpoint": "",
     }
 }
 

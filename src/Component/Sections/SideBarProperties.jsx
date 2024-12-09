@@ -3,8 +3,9 @@ import SelectInput from '../Buttons/SelectInput';
 import RadioInput from '../Buttons/RadioInput';
 import TextInput from '../Buttons/TextInput';
 import "../Buttons/css/SideBarProp.css"
+import TopButton from '../Buttons/TopButton';
 
-const SideBarProperties = ({ selectedNode, updateNodeProperties }) => {
+const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize }) => {
   const [nodeData, setNodeData] = useState(selectedNode ? selectedNode.data : {});
   const [nodevalueData, setNodeValueData] = useState(selectedNode ? selectedNode.values : {});
 
@@ -43,20 +44,24 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties }) => {
 
 
   return (
+    <>
+            <div className='TopBarSec'><img src="move.png" alt="shrink/expand" style ={{width: "20px"}} onClick={changeSize}></img></div>
+    <h3>Properties</h3>
     <div className="NodeProperties">
       <div className="NodeBody">
         {Object.keys(nodeData).map((key) => {
-          if (key != "label"){
+          if (!["label", "driver", "Comment","Breakpoint"].includes(key)) {
           const field = nodeData[key];
 
           return (
+            
             <div key={key} className="PropertyRow">
-              <label>{key}:</label>
+              
+              <div className='label'>{key}:</div>
 
               {/* Check for the type of the field and render accordingly */}
               {field?.type === 'select' ? (
-                
-                <select
+                <select 
                   name={key}
                   value={field.value}
                   onChange={(e) => handleSelectChange(e, key)}
@@ -70,7 +75,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties }) => {
               ) : field?.type === 'radio' ? (
                 <div>
                   {field?.options?.map((option, idx) => (
-                    <label key={idx}>
+                    <div className='label' key={idx}>
                       <input
                         type="radio"
                         name={key}
@@ -79,7 +84,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties }) => {
                         onChange={(e) => handleSelectChange(e, key)}
                       />
                       {option}
-                    </label>
+                    </div>
                   ))}
                 </div>
               ) : (
@@ -96,6 +101,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties }) => {
 }})}
       </div>
     </div>
+    </>
   );
 }
 
