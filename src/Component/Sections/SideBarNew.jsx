@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './css/SideBarNew.css';
 import buttonProperties from '../Buttons/ButtonList.jsx';
 
-const SideBarNew = ({ onAddNode }) => {
+const SideBarNew = () => {
   const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (sectionKey) => {

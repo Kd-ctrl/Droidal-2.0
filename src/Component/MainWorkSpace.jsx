@@ -22,8 +22,20 @@ import TriDirectionalNode from './Sections/TriDirectionalNode.tsx';
 import NormalNode from './Sections/NormalNode.tsx';
 import "./Sections/css/MainWorkSpace.css"
  
+
+const initialNodes = [
+  {
+    id: '1',
+    label: 'Start',
+    type: 'monodir',
+    position: { x: window.innerWidth/2, y: window.innerHeight/2 }, 
+    data: { label: 'start' },
+    style: { backgroundColor: 'lightgreen' },
+    values: { value: 'start' }
+  }
+];
 const MainWorkSpace = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedEdge, setSelectedEdge] = useState(null);
@@ -31,7 +43,7 @@ const MainWorkSpace = () => {
   const [workspacesize, setWorkSpaceSize] = useState({ width: '79vw', height: '100vh' })
   const[sideBarsize, setSideBarSize] = useState({width:'20vw',height:'100vh'})
   const[expand , SetExpand] = useState(true)
-  const[findarea,setFindArea] = useState(false)
+  // const[findarea,setFindArea] = useState(false)
   //  const [center, setCenter] = useState({ x: 0, y: 0 });
 
   const onConnect = useCallback(
@@ -39,9 +51,9 @@ const MainWorkSpace = () => {
       setEdges((eds) =>
         addEdge({ ...params, animated: true }, eds),
       ),
-    []
+    [setEdges]
   );
-
+  
   const getBottomMostNode = () => {
     const bottomMostNode = nodes.reduce((prev, current) => {
       return (prev.position.y > current.position.y) ? prev : current;
@@ -59,14 +71,18 @@ const MainWorkSpace = () => {
 
 
   const nodeTypes = {
-    bidirectional: BiDirectionalNode,
-    tridirectional:TriDirectionalNode,
-    monodir:NormalNode,
+    bidirectional:(props)=>(<BiDirectionalNode{...props} edges={edges} />),
+    tridirectional:(props)=>(<TriDirectionalNode{...props} edges={edges} />),
+    monodir:(props)=>(<NormalNode {...props} edges={edges} />),
   };
  
+
+
+
+  // we can use  this if we need to add a node while clicking a button
   const addNode = (nodeProps) => {
     
-    if (nodes.length != 0){
+    if (nodes.length !== 0){
       let bottomMostNode = getBottomMostNode();
     setNodes((nds) => [
       ...nds,
@@ -133,7 +149,7 @@ const MainWorkSpace = () => {
       }
       document.removeEventListener('keydown', handleKeyDown); // Remove keydown listener
     };
-  }, [selectedEdge, selectedNode]);
+  });
 
 
 
@@ -159,7 +175,7 @@ const MainWorkSpace = () => {
   };
 
   const clearAll = () => {
-    setNodes([]);
+    setNodes(initialNodes);
     setEdges([]);
   };
 
@@ -220,7 +236,7 @@ const MainWorkSpace = () => {
     }
 
 const changesize=()=>{
-  if (expand == true){
+  if (expand === true){
   SetExpand(false)
   setWorkSpaceSize({ width: '89vw', height: '100vh' })
   setSideBarSize({width:'10vw',height:'100vh'})
@@ -274,12 +290,12 @@ const changesize=()=>{
         {selectedNode ? (
           <>
         <SideBarProperties selectedNode = {selectedNode} updateNodeProperties={updateNodeProperties}/>
-        <div><Button variant="primary">Save</Button></div>
+        <div><Button variant="primary" onClick={onPaneClick}>Save</Button></div>
         {/* <div><Button variant="primary">Primary</Button></div> */}
         </>): 
         (
           <>
-        <div className='TopBarSec'><img src="move.png" style ={{width: "20px"}} onClick={changesize}></img><TopButton nodes={nodes} edges={edges} setNodes = {setNodes} setEdges = {setEdges} /></div>
+        <div className='TopBarSec'><img src="move.png" alt="shrink/expand" style ={{width: "20px"}} onClick={changesize}></img><TopButton nodes={nodes} edges={edges} setNodes = {setNodes} setEdges = {setEdges} /></div>
         <div className="SearchArea">
         <div className="search-container">
          <input
@@ -291,7 +307,11 @@ const changesize=()=>{
   </div>
 </div>
 
-        <SideBarNew onAddNode = {addNode}/>
+{/* onAddNode = {addNode} */}
+        <SideBarNew />
+        <div className='Bottom-Bar'>
+        <Button className = "SaveButtonHome" variant="primary" >Save</Button>
+        <Button className = "ClearAllHome" variant="primary" onClick={clearAll}>Clear All</Button></div>
         </>
         )
 }

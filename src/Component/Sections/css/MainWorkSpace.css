@@ -1,3 +1,4 @@
+@import url('../../xy-theme.css');
 .TopBarSec {
     display: flex;
     align-items: center; /* Vertically align items */
@@ -16,4 +17,64 @@
   }
   .search-btn{
     margin-top: 1vh;
+  }
+
+
+  
+/* 
+  .Bottom-Bar {
+      position: fixed;
+      z-index: 1000;
+      height: 4vh;
+      width: 100%;
+      bottom: 0;
+  }
+  
+  .Bottom-Bar button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 12vw;
+    max-width: 30vw;
+    background-color: hsl(0, 83%, 34%);
+  }
+   */
+   .Bottom-Bar {
+    position: fixed;
+    z-index: 1000;
+    height: 4vh;
+    bottom: 0;
+    padding: 1vw;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 30px; 
+
+  }
+  
+  .Bottom-Bar button {
+    
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 30vw;
+  }
+  
+  .SaveButtonHome{
+    border: 1px solid #0d8a22;
+    background-color: hsl(135, 79%, 33%);
+  }
+  .ClearAllHome{
+    border: 1px solid #a10000;
+    background-color: hsl(0, 99%, 33%);
+  }
+
+  .SaveButtonHome:hover{
+    background-color: hsl(135, 80%, 28%);
+  }
+  .ClearAllHome:hover{
+    border: 1px solid #4e0202;
+    background-color: hsl(0, 100%, 28%);
   }
