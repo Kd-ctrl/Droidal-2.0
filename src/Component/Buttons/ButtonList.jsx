@@ -37,6 +37,25 @@ const buttonProperties = {
       },
     }, 
   },
+  Test_Activities:{
+    addNodea: {
+      label: 'Open Browser',
+      nodeProps: {
+        type:'bidirectional',
+        data: { label: 'Open Browser',...buttonContent.OpenBrowser },
+        style: {backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.OpenBrowser },
+      },
+    },
+    addNodeb: {
+      label: 'Element Wait',
+      nodeProps: {
+        type:'bidirectional',
+        data: { label: 'Element Wait',...buttonContent.ElementWait },
+        style: {backgroundColor: 'lightblue'},
+      },
+    },
+  },
     DesktopActivities:{
 
     addNode5: {

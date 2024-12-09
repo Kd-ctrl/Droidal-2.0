@@ -21,6 +21,8 @@ import BiDirectionalNode from './Sections/BiDirectionalNode.tsx';
 import TriDirectionalNode from './Sections/TriDirectionalNode.tsx';
 import NormalNode from './Sections/NormalNode.tsx';
 import "./Sections/css/MainWorkSpace.css"
+import Search from './Sections/Search.jsx';
+
  
 
 const initialNodes = [
@@ -43,6 +45,7 @@ const MainWorkSpace = () => {
   const [workspacesize, setWorkSpaceSize] = useState({ width: '79vw', height: '100vh' })
   const[sideBarsize, setSideBarSize] = useState({width:'20vw',height:'100vh'})
   const[expand , SetExpand] = useState(true)
+  const [searchVal, setSearchVal] = useState('');
   // const[findarea,setFindArea] = useState(false)
   //  const [center, setCenter] = useState({ x: 0, y: 0 });
 
@@ -227,6 +230,7 @@ const MainWorkSpace = () => {
 
 
   function searchresults(searchVal) {
+    setSearchVal(searchVal)
         // if (searchVal === "") { setProducts(productList); return; }
         // const filterBySearch = productList.filter((item) => {
         //     if (item.toLowerCase()
@@ -278,7 +282,7 @@ const changesize=()=>{
         style={{
           ...sideBarsize,
           flex: 1,
-          padding: '10px',
+          padding: '0px,10px,10px,10px',
           borderLeft: '1px solid #ccc',
           overflow: 'auto', 
           position: "fixed",
@@ -306,12 +310,14 @@ const changesize=()=>{
           />
   </div>
 </div>
-
-{/* onAddNode = {addNode} */}
+{searchVal === "" ? (
+  <>
         <SideBarNew />
         <div className='Bottom-Bar'>
         <Button className = "SaveButtonHome" variant="primary" >Save</Button>
         <Button className = "ClearAllHome" variant="primary" onClick={clearAll}>Clear All</Button></div>
+        </>
+):(<Search searchVal= {searchVal} setSearchVal = {setSearchVal}/>)}
         </>
         )
 }

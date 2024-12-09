@@ -28,9 +28,11 @@
     padding: 2px;
     font-size: 14px;
     border: 1px solid #ccc;
+    height: 30px;
     border-radius: 4px;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
+    text-align: center;
   }
   
   select {
