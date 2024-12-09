@@ -9,7 +9,9 @@ const buttonProperties = {
         data: { label: 'For'},
         type:'bidirectional',
         style: { backgroundColor: 'lightblue' },
+        backgroundColor: 'lightblue' ,
       },
+      
     },
     addNode2: {
       label: 'If',
@@ -17,7 +19,9 @@ const buttonProperties = {
         data: { label: 'if' },
         type:'tridirectional',
         style: { backgroundColor: 'lightgreen'},
+        backgroundColor: 'lightgreen',
       },
+      
     },
     addNode3: {
       label: 'Else',
@@ -25,7 +29,9 @@ const buttonProperties = {
         data: { label: 'else' },
         type:'bidirectional',
         style: { backgroundColor: 'lightcoral'},
+        backgroundColor: 'lightcoral',
       },
+      
     },
     addNode4: {
       label: 'While',
@@ -34,7 +40,9 @@ const buttonProperties = {
         type:'bidirectional',
         style: {backgroundColor: 'lightcoral'},
         values:{value :"while"},
+        backgroundColor: 'lightcoral',
       },
+      
     }, 
   },
   "Test Activities":{
@@ -45,7 +53,9 @@ const buttonProperties = {
         data: { label: 'Open Browser',...buttonContent.OpenBrowser },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.OpenBrowser },
+        backgroundColor: 'lightblue',
       },
+      
     },
     addNodeb: {
       label: 'Element Wait',
@@ -54,7 +64,9 @@ const buttonProperties = {
         data: { label: 'Element Wait',...buttonContent.ElementWait },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.ElementWait },
+        backgroundColor: 'lightblue',
       },
+      
     },
   },
     DesktopActivities:{
@@ -66,7 +78,9 @@ const buttonProperties = {
         data: { label: 'Open Browser',...buttonContent.OpenBrowser },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.OpenBrowser },
+        backgroundColor: 'lightblue',
       },
+      
     },
     addNode6: {
       label: 'Element Wait',
@@ -75,7 +89,9 @@ const buttonProperties = {
         data: { label: 'Element Wait',...buttonContent.ElementWait },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.ElementWait },
+        backgroundColor: 'lightblue',
       },
+      
     },
     addNode8: {
       label: 'Click',
@@ -84,7 +100,9 @@ const buttonProperties = {
         data: { label: 'Click',...buttonContent.Click },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.Click },
+        backgroundColor: 'lightblue'
       },
+      
     },
     addNode9: {
       label: 'Type Into',
@@ -93,7 +111,9 @@ const buttonProperties = {
         data: { label: 'Type Into',...buttonContent.TypeInto },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.TypeInto },
+        backgroundColor: 'lightblue'
       },
+      
     },
   },
 

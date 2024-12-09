@@ -11,7 +11,7 @@ import {
 } from '@xyflow/react';
 // import initialNodes from './Sections/Init_nodes';
 // import initialEdges from './Sections/Init_edges';
-import onNodeDoubleClickHandler from './Sections/DoubleClick';
+import onNodeClickHandler from './Sections/onClick.jsx';
 import SideBarNew from './Sections/SideBarNew';
 import '@xyflow/react/dist/style.css';
 import SideBarProperties from './Sections/SideBarProperties';
@@ -22,6 +22,7 @@ import TriDirectionalNode from './Sections/TriDirectionalNode.tsx';
 import NormalNode from './Sections/NormalNode.tsx';
 import "./Sections/css/MainWorkSpace.css"
 import Search from './Sections/Search.jsx';
+import onNodeDoubleClickHandler from './Sections/DoubleClick.jsx';
 
  
 
@@ -36,6 +37,7 @@ const initialNodes = [
     values: { value: 'start' }
   }
 ];
+
 const MainWorkSpace = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -45,9 +47,14 @@ const MainWorkSpace = () => {
   const [workspacesize, setWorkSpaceSize] = useState({ width: '79vw', height: '100vh' })
   const[sideBarsize, setSideBarSize] = useState({width:'20vw',height:'100vh'})
   const[expand , SetExpand] = useState(true)
+  const [clickedNode, setClickedNode] = useState(null);
   const [searchVal, setSearchVal] = useState('');
-  // const[findarea,setFindArea] = useState(false)
-  //  const [center, setCenter] = useState({ x: 0, y: 0 });
+
+
+  const clickTimeoutRef = useRef(null);
+
+
+
 
   const onConnect = useCallback(
     (params) =>
@@ -114,9 +121,43 @@ const MainWorkSpace = () => {
   };
 
 
-  const onNodeDoubleClick = (event, node) => {
-    onNodeDoubleClickHandler(event, node, setSelectedNode); 
+  const onNodeClick = (event, node) => {
+    onNodeClickHandler(event, node, setSelectedNode);
   };
+
+
+
+
+
+
+
+  const handleNodeClick = (event, node) => {
+    
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+
+      console.log('Double-click detected:', node);
+      setSelectedNode(node)
+      onNodeDoubleClickHandler(event, node, setSelectedNode, selectedNode); 
+      alert(clickTimeoutRef.current)
+      clickTimeoutRef.current = null;
+    } else {
+      clickTimeoutRef.current = setTimeout(() => {
+        console.log('Single-click detected:', node);
+        onNodeClickHandler(event, node, setSelectedNode);
+
+        alert(clickTimeoutRef.current)
+        clickTimeoutRef.current = null; 
+      }, 10); 
+    }
+
+   
+  };
+
+
+
+
+
 
   const onPaneClick = () =>{
     setSelectedNode(null)
@@ -229,6 +270,22 @@ const MainWorkSpace = () => {
 
 
 
+
+  const refreshNode = (nodes) => {
+    setNodes((nodes) =>
+      nodes.map((node) =>({ ...node }) 
+      )
+    );
+  };
+
+
+
+  const onNodeDoubleClick = () =>{
+    onNodeDoubleClickHandler( selectedNode); 
+    refreshNode([selectedNode])
+  }
+
+
   function searchresults(searchVal) {
     setSearchVal(searchVal)
         // if (searchVal === "") { setProducts(productList); return; }
@@ -265,9 +322,9 @@ const changesize=()=>{
         nodeTypes={nodeTypes}
         onPaneClick={onPaneClick}
         onEdgeClick={onEdgeClick}
-        onNodeClick={onNodeDoubleClick}
+        onNodeClick={onNodeClick}
         // onNodeMouseEnter={onNodeMouseEnter}
-        onNodeDoubleClick={onNodeDoubleClick}
+        // onNodeDoubleClick={onNodeDoubleClick}
       >
         
         <Controls />
@@ -293,7 +350,7 @@ const changesize=()=>{
         
         {selectedNode ? (
           <>
-        <SideBarProperties selectedNode = {selectedNode} updateNodeProperties={updateNodeProperties} changeSize = {changesize}/>
+        <SideBarProperties  setSelectedNode = {setSelectedNode} selectedNode = {selectedNode} updateNodeProperties={updateNodeProperties} changeSize = {changesize} onDoubleclick = {onNodeDoubleClick} setNodes = {setNodes}/>
         <div><Button variant="primary" onClick={onPaneClick}>Save</Button></div>
         {/* <div><Button variant="primary">Primary</Button></div> */}
         </>): 

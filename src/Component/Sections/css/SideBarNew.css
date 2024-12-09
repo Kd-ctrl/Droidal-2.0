@@ -85,6 +85,13 @@
     overflow: auto;
     margin-bottom: 8px;
   }
+  .header2{
+    font-size: large;
+    font-weight: 500;
+    font-style: bold;
+    overflow: auto;
+    margin-bottom: 8px;
+  }
   .button-card-small{
     background-color: #fafafa;
     border: 1px solid #e0e0e0;

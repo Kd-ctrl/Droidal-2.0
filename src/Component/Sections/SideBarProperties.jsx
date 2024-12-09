@@ -4,8 +4,12 @@ import RadioInput from '../Buttons/RadioInput';
 import TextInput from '../Buttons/TextInput';
 import "../Buttons/css/SideBarProp.css"
 import TopButton from '../Buttons/TopButton';
+import { Button } from 'react-bootstrap';
+import onDebugClickHandler from './Debug';
 
-const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize }) => {
+const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDoubleclick ,setNodes}) => {
+  const [isCommented, setIsCommented] = useState(false);
+  const [isDebug , setIsDebug] = useState(false);
   const [nodeData, setNodeData] = useState(selectedNode ? selectedNode.data : {});
   const [nodevalueData, setNodeValueData] = useState(selectedNode ? selectedNode.values : {});
 
@@ -14,6 +18,16 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize }) =
     if (selectedNode && selectedNode) {
       setNodeData(selectedNode.data);
       setNodeValueData(selectedNode.values)
+      if(selectedNode.data.Comment == "True"){
+        setIsCommented(true)
+      }
+      if(selectedNode.data.Breakpoint == "True"){
+        setIsDebug(true)
+      }
+
+
+
+
     }
   }, [selectedNode]);
 
@@ -31,8 +45,23 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize }) =
 
 
 
+  const handleToggleComment = () => {
+    onDoubleclick()
+    setIsCommented((prevState) => !prevState);
+  }
 
+  const handleToggleDebug= () =>{
+    onDebugClickHandler(selectedNode)
+    setIsDebug((prevState)=>!prevState);
+    refreshNode(selectedNode)
+  }
 
+  const refreshNode = (nodes) => {
+    setNodes((nodes) =>
+      nodes.map((node) =>({ ...node }) 
+      )
+    );
+  };
 
 
   if (!selectedNode || !selectedNode) {
@@ -46,8 +75,14 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize }) =
   return (
     <>
             <div className='TopBarSec'><img src="move.png" alt="shrink/expand" style ={{width: "20px"}} onClick={changeSize}></img></div>
-    <h3>Properties</h3>
+    <div className='header2'>Properties</div>
     <div className="NodeProperties">
+      <div className='comment'>
+        <Button className='buttoncomment' onClick = {handleToggleComment}>{isCommented ? 'Uncomment' : 'Comment'}</Button>
+      </div>
+      <div className='debug'>
+        <Button className='buttondebug' onClick = {handleToggleDebug}>{isDebug ? 'Unselect Debug' : 'Debug'}</Button>
+      </div>
       <div className="NodeBody">
         {Object.keys(nodeData).map((key) => {
           if (!["label", "driver", "Comment","Breakpoint"].includes(key)) {
