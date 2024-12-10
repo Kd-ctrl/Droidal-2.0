@@ -23,6 +23,7 @@ import NormalNode from './Sections/NormalNode.tsx';
 import "./Sections/css/MainWorkSpace.css"
 import Search from './Sections/Search.jsx';
 import onNodeDoubleClickHandler from './Sections/DoubleClick.jsx';
+import onDebugClickHandler from '../Component/Sections/Debug.jsx';
 
  
 
@@ -49,6 +50,7 @@ const MainWorkSpace = () => {
   const[expand , SetExpand] = useState(true)
   const [clickedNode, setClickedNode] = useState(null);
   const [searchVal, setSearchVal] = useState('');
+  const [menuPosition, setMenuPosition] = useState(null);
 
 
   const clickTimeoutRef = useRef(null);
@@ -118,11 +120,13 @@ const MainWorkSpace = () => {
   const onEdgeClick = (event, edge) => {
     setSelectedEdge(edge);
     setSelectedNode(null)
+    setMenuPosition(null)
   };
 
 
   const onNodeClick = (event, node) => {
     onNodeClickHandler(event, node, setSelectedNode);
+    setMenuPosition(null)
   };
 
 
@@ -131,28 +135,28 @@ const MainWorkSpace = () => {
 
 
 
-  const handleNodeClick = (event, node) => {
+  // const handleNodeClick = (event, node) => {
     
-    if (clickTimeoutRef.current) {
-      clearTimeout(clickTimeoutRef.current);
+  //   if (clickTimeoutRef.current) {
+  //     clearTimeout(clickTimeoutRef.current);
 
-      console.log('Double-click detected:', node);
-      setSelectedNode(node)
-      onNodeDoubleClickHandler(event, node, setSelectedNode, selectedNode); 
-      alert(clickTimeoutRef.current)
-      clickTimeoutRef.current = null;
-    } else {
-      clickTimeoutRef.current = setTimeout(() => {
-        console.log('Single-click detected:', node);
-        onNodeClickHandler(event, node, setSelectedNode);
+  //     console.log('Double-click detected:', node);
+  //     setSelectedNode(node)
+  //     onNodeDoubleClickHandler(event, node, setSelectedNode, selectedNode); 
+  //     alert(clickTimeoutRef.current)
+  //     clickTimeoutRef.current = null;
+  //   } else {
+  //     clickTimeoutRef.current = setTimeout(() => {
+  //       console.log('Single-click detected:', node);
+  //       onNodeClickHandler(event, node, setSelectedNode);
 
-        alert(clickTimeoutRef.current)
-        clickTimeoutRef.current = null; 
-      }, 10); 
-    }
+  //       alert(clickTimeoutRef.current)
+  //       clickTimeoutRef.current = null; 
+  //     }, 10); 
+  //   }
 
    
-  };
+  // };
 
 
 
@@ -162,6 +166,7 @@ const MainWorkSpace = () => {
   const onPaneClick = () =>{
     setSelectedNode(null)
     setSelectedEdge(null)
+    setMenuPosition(null)
   }
 
   useEffect(() => {
@@ -280,7 +285,12 @@ const MainWorkSpace = () => {
 
 
 
+  const onDebugClick= () =>{
+    onDebugClickHandler(selectedNode)
+    refreshNode([selectedNode])
+  }
   const onNodeDoubleClick = () =>{
+    setSelectedNode(selectedNode)
     onNodeDoubleClickHandler( selectedNode); 
     refreshNode([selectedNode])
   }
@@ -308,7 +318,17 @@ const changesize=()=>{
     setSideBarSize({width:'19vw',height:'100vh'})
   }
 }
-  
+const handleNodeContextMenu = (event, node) => {
+  event.preventDefault();
+  setSelectedNode(node); 
+  setMenuPosition({
+    x: event.clientX,
+    y: event.clientY,
+    node,
+  });
+};
+
+
   return (
     <>
     <div style={workspacesize}onDrop={onDrop}
@@ -323,6 +343,7 @@ const changesize=()=>{
         onPaneClick={onPaneClick}
         onEdgeClick={onEdgeClick}
         onNodeClick={onNodeClick}
+        onNodeContextMenu={handleNodeContextMenu}
         // onNodeMouseEnter={onNodeMouseEnter}
         // onNodeDoubleClick={onNodeDoubleClick}
       >
@@ -331,6 +352,24 @@ const changesize=()=>{
         <MiniMap />
         <Background variant="dots" gap={12} size={1} />
       </ReactFlow>
+      {menuPosition && (
+        <div
+          style={{
+            position: 'absolute',
+            top: menuPosition.y,
+            left: menuPosition.x,
+            background: 'white',
+            border: '1px solid #ccc',
+            margin:"10px",
+            borderRadius:'20px',
+            padding: '10px',
+            zIndex: 1000,
+          }}
+        >
+          <div className='Comment'><button onClick={onNodeDoubleClick}>Comment</button></div>
+          <div className='Debug'><button onClick={onDebugClick}>Debug</button></div>
+        </div>
+      )}
     </div>
 
     

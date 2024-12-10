@@ -77,14 +77,6 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
             <div className='TopBarSec'><img src="move.png" alt="shrink/expand" style ={{width: "20px"}} onClick={changeSize}></img></div>
     <div className='header2'>Properties</div>
     <div className="NodeProperties">
-    <div className='CommentDebug'>
-      <div className='comment'>
-        <Button className='buttoncomment' onClick = {handleToggleComment}>{isCommented ? 'Uncomment' : 'Comment'}</Button>
-      </div>
-      <div className='debug'>
-        <Button className='buttondebug' onClick = {handleToggleDebug}>{isDebug ? 'Unselect Debug' : 'Debug'}</Button>
-      </div>
-      </div>
       <div className="NodeBody">
         {Object.keys(nodeData).map((key) => {
           if (!["label", "driver", "Comment","Breakpoint"].includes(key)) {

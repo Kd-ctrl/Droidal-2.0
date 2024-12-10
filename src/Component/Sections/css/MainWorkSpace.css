@@ -59,6 +59,16 @@
     z-index: 1000;
 
   }
+
+  .Comment button{
+    width: 7vw;
+    margin-bottom: 5px;
+    background-color: grey;
+  }
+  .Debug button{
+    width: 7vw;
+    background-color: red;
+  }
   
   .Bottom-Bar button {
     
