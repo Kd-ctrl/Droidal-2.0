@@ -1,0 +1,14 @@
+test7@0.1.0 C:\Users\LENOVO\Desktop\react project\test7\test7\Droidal-2.0
++-- @testing-library/jest-dom@5.17.0
++-- @testing-library/react@13.4.0
++-- @testing-library/user-event@13.5.0
++-- @xyflow/react@12.3.5
++-- bootstrap@5.3.3
++-- react-bootstrap@2.10.6
++-- react-dom@18.3.1
++-- react-scripts@5.0.1
++-- react-split-pane@0.1.92
++-- react@18.3.1
++-- reactflow@11.11.4
+`-- web-vitals@2.1.4
+

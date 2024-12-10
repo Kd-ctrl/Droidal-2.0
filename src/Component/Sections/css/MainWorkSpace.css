@@ -60,15 +60,38 @@
 
   }
 
-  .Comment button{
-    width: 7vw;
-    margin-bottom: 5px;
-    background-color: grey;
-  }
-  .Debug button{
-    width: 7vw;
-    background-color: red;
-  }
+/* Styling the containers to display buttons in a column */
+.Comment, .Debug {
+  margin: 10px 0; /* Add vertical spacing between buttons */
+  display: block; /* Ensures each button container takes up a full width */
+}
+
+/* Styling the buttons */
+.Comment button, .Debug button {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Add some padding inside the button */
+  font-size: 14px; /* Font size for readability */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  width: 100%; /* Makes the button fill the container's width */
+  max-width: 200px; /* Optionally, set a max width for the button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  margin: 0 auto; /* Centers the button horizontally */
+}
+
+/* Hover effect for the buttons */
+.Comment button:hover, .Debug button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Focus effect for accessibility */
+.Comment button:focus, .Debug button:focus {
+  outline: 2px solid #0056b3; /* Add focus outline for better accessibility */
+  outline-offset: 2px; /* Offset the focus outline */
+}
+
   
   .Bottom-Bar button {
     

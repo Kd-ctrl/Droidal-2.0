@@ -121,12 +121,14 @@ const MainWorkSpace = () => {
     setSelectedEdge(edge);
     setSelectedNode(null)
     setMenuPosition(null)
+    setSearchVal('')
   };
 
 
   const onNodeClick = (event, node) => {
     onNodeClickHandler(event, node, setSelectedNode);
     setMenuPosition(null)
+    setSearchVal('')
   };
 
 
@@ -167,6 +169,7 @@ const MainWorkSpace = () => {
     setSelectedNode(null)
     setSelectedEdge(null)
     setMenuPosition(null)
+    setSearchVal('')
   }
 
   useEffect(() => {
