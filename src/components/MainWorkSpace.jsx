@@ -287,7 +287,7 @@ const MainWorkSpace = () => {
 
         {menuPosition && (
           <div
-            className="absolute z-50 bg-white border border-gray-300 rounded-lg p-4 shadow-md"
+            className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
             style={{
               top: menuPosition.y,
               left: menuPosition.x,
