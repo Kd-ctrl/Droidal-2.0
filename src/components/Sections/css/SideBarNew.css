@@ -1,0 +1,119 @@
+@import url('../../xy-theme.css');
+
+.button-container {
+    /* margin-top: 40px; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    justify-content: center;
+    margin-bottom: 10vh;
+  }
+  
+
+  .section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 12vw;
+    max-width: 30vw; /* Adjust for smaller card width */
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .section:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .section-title span {
+    font-size: 1.4em;
+    color: #757575; /* Subtle icon color */
+  }
+  
+  .button-list {
+    padding-top: 10px;
+  }
+  
+  .button-card {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow for buttons */
+  }
+  
+  .button-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slight lift effect */
+    background-color: #f1f1f1;
+  }
+  
+  .button-card:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Flatten on click */
+  }
+  
+  /* .section + .section {
+    margin-top: 16px;
+  } */
+  
+  .TopBarSec{
+    height: 7vh;
+  }
+  .header{
+    font-size: medium;
+    font-weight: 400;
+    font-style: bold;
+    overflow: auto;
+    margin-bottom: 8px;
+  }
+  .header2{
+    font-size: large;
+    font-weight: 500;
+    font-style: bold;
+    overflow: auto;
+    margin-bottom: 8px;
+  }
+  .button-card-small{
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;  
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow for buttons */
+  }
+
+  .button-card-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slight lift effect */
+    background-color: #f1f1f1;
+  }
+
+  .button-card-small:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Flatten on click */
+  }

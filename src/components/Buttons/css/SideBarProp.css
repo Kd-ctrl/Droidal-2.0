@@ -1,0 +1,169 @@
+/* SideBarProp.css */
+@import url('../../xy-theme.css');
+.NodeProperties {
+  font-family: 'Roboto', Arial, sans-serif; /* Google's font */
+  background: #ffffff; /* Light gray background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.CommentDebug {
+display: flex;
+flex-direction: column;
+overflow:inherit;
+gap:1vw;
+width: inherit;
+margin-bottom: 20px;
+}
+.NodeBody {
+display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.PropertyRow {
+width: inherit;
+overflow: hidden;
+}
+
+.PropertyRow label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5f6368; /* Subtle gray */
+}
+
+.PropertyRow select,
+.PropertyRow input[type="text"] {
+  flex: 2;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: inherit;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #202124; /* Darker text color */
+  transition: border-color 0.2s;
+}
+
+.PropertyRow select:focus,
+.PropertyRow input[type="text"]:focus {
+  border-color: #1a73e8; /* Google's blue */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
+}
+
+.PropertyRow input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #1a73e8; /* Google's blue for radio buttons */
+}
+
+input[type="radio"] + label {
+  margin-right: 12px;
+  color: #202124;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+button {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #1558c6;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
+}
+
+
+  /* MonoDirectionalNode.css */
+
+.MonoDirNode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 14px;
+    /* color: #000000;  */
+    padding: 1px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+.TriDirNode{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 14px;
+  color: #333; /* Text color */
+  padding: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .TriDirNode:hover{
+    transform: scale(1); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  }
+
+  .TriDirNode:active{
+    transform: scale(1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .MonoDirNode:hover {
+    transform: scale(1); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .MonoDirNode:active {
+    transform: scale(1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Handle styling */
+  .react-flow__handle {
+    width: 5px;
+    height: 5px;
+    background-color: #007bff; /* Handle color */
+    border: 2px solid #ffffff; /* Border for contrast */
+    border-radius: 50%; /* Circular handle */
+    position: absolute; /* Align handles accurately */
+    z-index: 10; /* Ensure visibility above other elements */
+    cursor: pointer;
+  }
+  
+  .react-flow__handle:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Position-specific tweaks */
+  .react-flow__handle-top {
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .react-flow__handle-bottom {
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  

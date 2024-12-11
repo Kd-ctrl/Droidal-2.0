@@ -1,0 +1,118 @@
+@import url('../../xy-theme.css');
+.TopBarSec {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    justify-content: space-between; /* Distribute space between children */
+    background-color: white;
+    position: sticky;
+    top: 0;
+    padding: 2vh 0vh;
+    z-index: 1000; 
+    height: 4vh;
+  }
+
+  .search-box{
+    margin-top: 2vh;
+    height: 4vh;
+    border-radius: 1vh;
+  }
+  .search-btn{
+    margin-top: 1vh;
+  }
+
+
+  
+/* 
+  .Bottom-Bar {
+      position: fixed;
+      z-index: 1000;
+      height: 4vh;
+      width: 100%;
+      bottom: 0;
+  }
+  
+  .Bottom-Bar button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 12vw;
+    max-width: 30vw;
+    background-color: hsl(0, 83%, 34%);
+  }
+   */
+   .Bottom-Bar {
+    position: fixed;
+    z-index: 1000;
+    height: 4vh;
+    bottom: 0;
+    padding: 1vw;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 30px; 
+    background-color: azure;
+    padding: 2vh 0vw;
+    width: inherit;
+    z-index: 1000;
+
+  }
+
+/* Styling the containers to display buttons in a column */
+.Comment, .Debug {
+  margin: 10px 0; /* Add vertical spacing between buttons */
+  display: block; /* Ensures each button container takes up a full width */
+}
+
+/* Styling the buttons */
+.Comment button, .Debug button {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Add some padding inside the button */
+  font-size: 14px; /* Font size for readability */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  width: 100%; /* Makes the button fill the container's width */
+  max-width: 200px; /* Optionally, set a max width for the button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  margin: 0 auto; /* Centers the button horizontally */
+}
+
+/* Hover effect for the buttons */
+.Comment button:hover, .Debug button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Focus effect for accessibility */
+.Comment button:focus, .Debug button:focus {
+  outline: 2px solid #0056b3; /* Add focus outline for better accessibility */
+  outline-offset: 2px; /* Offset the focus outline */
+}
+
+  
+  .Bottom-Bar button {
+    
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 30vw;
+  }
+  
+  .SaveButtonHome{
+    border: 1px solid #0d8a22;
+    background-color: hsl(135, 79%, 33%);
+  }
+  .ClearAllHome{
+    border: 1px solid #a10000;
+    background-color: hsl(0, 99%, 33%);
+  }
+
+  .SaveButtonHome:hover{
+    background-color: hsl(135, 80%, 28%);
+  }
+  .ClearAllHome:hover{
+    border: 1px solid #4e0202;
+    background-color: hsl(0, 100%, 28%);
+  }

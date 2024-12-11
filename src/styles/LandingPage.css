@@ -1,0 +1,50 @@
+.logo{
+    height: 3rem;
+    width: 12.5rem;
+    margin-top: -20px;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .fade-in-left.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .fade-in-zoom {
+    opacity: 0;
+    transform: scale(1.2);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .fade-in-zoom.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .lottie-animation.zoom-out {
+    animation: zoom-out-animation 1s ease-out 1s forwards;
+  }
+  
+  @keyframes zoom-out-animation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.95);
+    }
+  }
+
+.description{
+    font-weight: 700;
+}
+/* 
+.robo{
+    margin: 500px;
+} */
+
+  

@@ -1,0 +1,41 @@
+/* Container for the top buttons */
+.TopButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 15px; /* Space between buttons */
+    /* padding: 10px,0px; */
+    background-color: #ffffff; 
+    /* border-bottom: 1px solid #ccc; */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Keep it on top while scrolling */
+  }
+  
+  /* Styling for the buttons (images) */
+  .TopButtons img {
+    width: 20px; /* Uniform size for all icons */
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Smooth hover effect */
+  }
+  
+  /* Hover effect for buttons */
+  .TopButtons img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    opacity: 0.8; /* Slight fade effect */
+  }
+  
+  /* Specific classes for individual buttons */
+  .TopNavButtonCC {
+    /* Additional styles for Copy button (if needed) */
+  }
+  
+  .TopNavButtonEP {
+    /* Additional styles for Export button (if needed) */
+  }
+  
+  .TopNavButtonPT {
+    /* Additional styles for Paste button (if needed) */
+  }
+  
