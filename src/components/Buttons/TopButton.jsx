@@ -46,23 +46,49 @@ const copyToClipboard = (nodes, edges) => {
   };
 
 
+const validateButton = (nodes, edges) => {
+  // Filter out all nodes except the 'start' node
+  const allButStartNodes = nodes.filter((node) => node.data.label !== 'start');
+
+  const unconnectedNodes = allButStartNodes.filter((node) => {
+    // Check if the node has any incoming edge
+    const hasIncomingEdge = edges.some((edge) => edge.target === node.id);
+    return !hasIncomingEdge; // Keep nodes with no incoming edges
+  });
+
+  if (unconnectedNodes.length > 0) {
+    const all_node_id= [];
+    console.log('Unconnected Nodes:', unconnectedNodes);
+    unconnectedNodes.forEach((unconnodes)=>{
+      all_node_id.push(unconnodes.data.label)
+    })
+    alert(`Some nodes are not connected to any edges!: ${all_node_id.join(', ')}`);
+  } else {
+    alert('All nodes are connected.');
+  }
+};
 
 const TopButton = ({ nodes, edges, setNodes, setEdges }) => {
   return (
     <div className='TopButtons'>
+            <TicketCheck 
+      className="TopValidateButton cursor-pointer w-5 h-5"
+      onClick={() => validateButton(nodes, edges)}/>
       <Copy
         className="TopNavButtonCC cursor-pointer w-5 h-5" 
         onClick={() => copyToClipboard(nodes, edges)}
       />
-      <Download
-        className="TopNavButtonEP cursor-pointer w-5 h-5"
-        onClick={() => exportToFile(nodes, edges)}
-      />
+
 
       {/* Paste Icon */}
       <Clipboard
         className="TopNavButtonPT cursor-pointer w-5 h-5" 
         onClick={() => handlePaste({ setNodes, setEdges })}
+      />
+
+      <Download
+        className="TopNavButtonEP cursor-pointer w-5 h-5"
+        onClick={() => exportToFile(nodes, edges)}
       />
     </div>
   );

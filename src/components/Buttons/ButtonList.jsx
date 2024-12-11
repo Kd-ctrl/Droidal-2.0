@@ -385,7 +385,7 @@ addNode9: {
       backgroundColor: 'lightblue',
     },
   },
-  addNode34: {
+  addNode36: {
     label: 'Chrome Driver Downloader',
     nodeProps: {
       type:'bidirectional',
@@ -395,7 +395,7 @@ addNode9: {
       backgroundColor: 'lightblue',
     },
   },
-  addNode34: {
+  addNode37: {
     label: 'Dashboard Status',
     nodeProps: {
       type:'bidirectional',

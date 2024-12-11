@@ -30,6 +30,7 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
         id="left"
         isConnectable={incomingConnectionCount < maxIncomingConnections} // Enable only if below limit
       />
+      {data["image"]? <img src = {data["image"]} style={{width:'30px',height:"30px"}}/>: ""}
       {data?.label}
       <Handle
         type="source"
