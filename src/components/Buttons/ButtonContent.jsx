@@ -328,7 +328,15 @@ const buttonContent = {
         "Comment": "",
         "Breakpoint": "",
         "driver": "driver",
-    }
+    },  
+    "Add":{
+        "Variable1":{"value":""},
+        "Variable2":{"value":""},
+        "Description": {"value":""},
+        "Comment": "",
+        "Breakpoint": "",
+    },
+
     
 
 }

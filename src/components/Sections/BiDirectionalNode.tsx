@@ -21,14 +21,13 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
 
   const incomingConnectionCount = incomingEdges.length;
   const outgoingConnectionCount = outgoingEdges.length;
-  console.log(data)
   return (
 <div>
       <Handle
       color='blue'
         type="target"
         position={Position.Top}
-        id="left"
+        id="top"
         isConnectable={incomingConnectionCount < maxIncomingConnections} 
       />
 <>
@@ -42,7 +41,7 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
     <Handle
         type="source"
         position={Position.Bottom}
-        id="right"
+        id="bottom"
         isConnectable={outgoingConnectionCount < maxOutgoingConnections} 
       />
 </div>

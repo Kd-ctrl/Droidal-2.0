@@ -16,12 +16,16 @@ import TopButton from './Buttons/TopButton';
 import importFromJSON from './Sections/JsonImport';
 import BiDirectionalNode from './Sections/BiDirectionalNode.tsx';
 import TriDirectionalNode from './Sections/TriDirectionalNode.tsx';
-import NormalNode from './Sections/NormalNode.tsx';
+import NormalNode from './Sections/NormalNode.jsx';
 import "./Sections/css/MainWorkSpace.css";
 import Search from './Sections/Search.jsx';
 import onNodeDoubleClickHandler from './Sections/DoubleClick.jsx';
 import onDebugClickHandler from '../components/Sections/Debug.jsx';
 import { Menu, X } from 'lucide-react';
+
+import ComputationalNode from './Sections/ComputationalNode.jsx';
+import FloatingButtons from './Sections/FloatingButtonExample.jsx';
+import handleExport from './Sections/JsonExportBackend.jsx';
 
 const initialNodes = [
   {
@@ -49,6 +53,18 @@ const MainWorkSpace = () => {
   const [searchVal, setSearchVal] = useState('');
   const [menuPosition, setMenuPosition] = useState(null);
   const clickTimeoutRef = useRef(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [apiData, setApiData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+
+
+  const handleInit = (instance) => {
+    setReactFlowInstance(instance); // Set the React Flow instance
+  };
+
+
 
   const onConnect = useCallback(
     (params) =>
@@ -72,7 +88,9 @@ const MainWorkSpace = () => {
   const nodeTypes = {
     bidirectional:(props)=>(<BiDirectionalNode{...props} edges={edges} />),
     tridirectional:(props)=>(<TriDirectionalNode{...props} edges={edges} />),
-    monodir:(props)=>(<NormalNode {...props} edges={edges} />),
+    monodir:(props)=>(<NormalNode {...props} edges={edges} updateEdge={updateEdge} handleLabelClick={handleLabelClick}/>),
+    computational:(props)=>(<ComputationalNode{...props} edges={edges} />),
+    floatingbutton:(props)=>(<FloatingButtons{...props} edges={edges} nodes={nodes} setNodes={setNodes} setEdges={setEdges} reactFlowInstance = {reactFlowInstance} />),
   };
 
   const addNode = (nodeProps) => {
@@ -97,6 +115,73 @@ const MainWorkSpace = () => {
       ]);
     }
   }
+
+
+  const handleLabelClick = async () => {
+    setLoading(true);
+  
+    // Define the JSON data to be sent in the request body
+    const requestData = handleExport(nodes, edges);
+  
+    try {
+      const response = await fetch('http://localhost:5000/calculate', {
+        method: 'POST', // Use POST method to send data
+        headers: {
+          'Content-Type': 'application/json', // Specify content type as JSON
+        },
+        body: JSON.stringify(requestData), // Convert the request data to a JSON string
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const result = await response.json();
+  
+      // Find the start node and its incoming/outgoing edges
+      const startNode = nodes.find((node) => node.data.label === 'Add');
+      if (!startNode) throw new Error("Start node with label 'Add' not found.");
+  
+      const incoming_edges = edges.filter((edge) => edge.target === startNode.id);
+      const outgoing_edges = edges.filter((edge) => edge.source === startNode.id);
+  
+      // Update incoming edges with source node values
+      incoming_edges.forEach((edge) => {
+        if (edge.source !== "1") { // Skip source "1"
+          const sourceNode = nodes.find((node) => node.id === edge.source);
+          
+          if (sourceNode && sourceNode.data && sourceNode.data['Variable Value']) {
+            const variableValue = sourceNode.data['Variable Value']; 
+            updateEdge(edge, variableValue.value); 
+          } else {
+            console.warn(`Source node or 'Variable Value' not found for edge ${edge.id}`);
+          }
+        }
+      });
+  
+      // Update outgoing edges with API result
+      outgoing_edges.forEach((edge) => {
+        updateEdge(edge, result.result); // Assuming `result.result` holds the desired label
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateEdge = (edge, label) => {
+    const updatedEdge = {
+      ...edge,
+      label,
+    };
+    setEdges((prevEdges) =>
+      prevEdges.map((e) => (e.id === edge.id ? updatedEdge : e))
+    );
+    setSelectedEdge(updatedEdge);
+  };
+
+
 
   const onEdgeClick = (event, edge) => {
     setSelectedEdge(edge);
@@ -279,6 +364,7 @@ const MainWorkSpace = () => {
           onEdgeClick={onEdgeClick}
           onNodeClick={onNodeClick}
           onNodeContextMenu={handleNodeContextMenu}
+          onInit={handleInit} 
         >
           <Controls />
           <MiniMap />

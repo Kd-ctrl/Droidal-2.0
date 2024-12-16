@@ -109,7 +109,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
     <div className="NodeProperties">
       <div className="NodeBody">
         {Object.keys(nodeData).map((key) => {
-          if (!["label", "driver", "Comment","Breakpoint"].includes(key)) {
+          if (!["label", "driver", "Comment","Breakpoint","image"].includes(key)) {
           const field = nodeData[key];
 
           return (

@@ -9,6 +9,7 @@ import { Copy, Download, Clipboard,TicketCheck } from 'lucide-react';
 const exportToFile = (nodes, edges) =>{
     let jsonOutput = handleExport(nodes,edges)
     if (jsonOutput != null){
+    jsonOutput = JSON.stringify(jsonOutput);
     const blob = new Blob([jsonOutput], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');

@@ -6,7 +6,7 @@ const buttonProperties = {
     addNode1: {
       label: 'Assign',
       nodeProps: {
-        data: { label: 'Assign',...buttonContent.Assign},
+        data: { label: 'Assign',image: "Droidal.png",...buttonContent.Assign},
         type:'bidirectional',
         style: { backgroundColor: 'lightblue'},
         values:{ ...buttonValue.Assign },
@@ -405,6 +405,26 @@ addNode9: {
       backgroundColor: 'lightblue',
     },
   },
+  addNode38 : {
+    label: 'Add',
+    nodeProps: {
+      type:'computational',
+      data: { label:'Add',image:"Plus-sign.png",...buttonContent.Add},
+      style: {backgroundColor: 'white'},
+      values:{ ...buttonValue.Add },
+      backgroundColor: 'transparent',
+    },
+  },
+  addNode39 : {
+    label: 'Test node',
+    nodeProps: {
+      type:'floatingbutton',
+      data: { label:'Test node',image:"Plus-sign.png",...buttonContent.Testnode},
+      style: {backgroundColor: 'white'},
+      values:{ ...buttonValue.Testnode },
+      backgroundColor: 'transparent',
+    },
+  }
   },
 
     };
