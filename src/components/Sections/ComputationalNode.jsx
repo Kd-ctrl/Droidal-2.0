@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
-import { useState } from 'react';
  
 export default memo(({ id, data }) => {
     // const [LeftHandles] = useState(["variables1","variables2"]); 

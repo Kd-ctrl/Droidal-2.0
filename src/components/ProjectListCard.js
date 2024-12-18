@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X, Layers, Folder, File, ChevronRight } from 'lucide-react';
 import "../styles/ProjectListCard.css";
 

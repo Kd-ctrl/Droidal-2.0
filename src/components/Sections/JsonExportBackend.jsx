@@ -42,7 +42,7 @@ const handleExport = (nodes, edges) => {
 
         // Find the edges originating from the current node
         if (child === "false"){
-        const connectedEdges = edges.filter((edge) => edge.source === nodeId || edge.target === nodeId && edge.sourceHandle !== "bottom");
+        const connectedEdges = edges.filter((edge) => edge.source === nodeId || (edge.target === nodeId && edge.sourceHandle !== "bottom"));
         const nextEdge =edges.filter((edge) => edge.source === nodeId && edge.sourceHandle === "bottom");
         if (connectedEdges){
           connectedEdges.forEach((edge) => traverse(edge.target), "true");

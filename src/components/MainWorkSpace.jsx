@@ -49,12 +49,9 @@ const MainWorkSpace = () => {
   const [workspacesize, setWorkSpaceSize] = useState({ width: '79vw', height: '100vh' });
   const [sideBarsize, setSideBarSize] = useState({width:'20vw', height:'100vh'});
   const [expand, SetExpand] = useState(true);
-  const [clickedNode, setClickedNode] = useState(null);
   const [searchVal, setSearchVal] = useState('');
   const [menuPosition, setMenuPosition] = useState(null);
-  const clickTimeoutRef = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(false);
 
 
@@ -173,28 +170,28 @@ const MainWorkSpace = () => {
     floatingbutton:(props)=>(<FloatingButtons{...props} edges={edges} nodes={nodes} setNodes={setNodes} setEdges={setEdges} reactFlowInstance = {reactFlowInstance} />),
   };
 
-  const addNode = (nodeProps) => {
-    if (nodes.length !== 0){
-      let bottomMostNode = getBottomMostNode();
-      setNodes((nds) => [
-        ...nds,
-        {
-          id: (nds.length + 1).toString(), 
-          position: { x:bottomMostNode.position.x, y:bottomMostNode.position.y+60},
-          ...nodeProps,
-        },
-      ]);
-    } else {
-      setNodes((nds) => [
-        ...nds,
-        {
-          id: (nds.length + 1).toString(), 
-          position: { x:centerOfViewport.x, y: centerOfViewport.y},
-          ...nodeProps,
-        },
-      ]);
-    }
-  }
+  // const addNode = (nodeProps) => {
+  //   if (nodes.length !== 0){
+  //     let bottomMostNode = getBottomMostNode();
+  //     setNodes((nds) => [
+  //       ...nds,
+  //       {
+  //         id: (nds.length + 1).toString(), 
+  //         position: { x:bottomMostNode.position.x, y:bottomMostNode.position.y+60},
+  //         ...nodeProps,
+  //       },
+  //     ]);
+  //   } else {
+  //     setNodes((nds) => [
+  //       ...nds,
+  //       {
+  //         id: (nds.length + 1).toString(), 
+  //         position: { x:centerOfViewport.x, y: centerOfViewport.y},
+  //         ...nodeProps,
+  //       },
+  //     ]);
+  //   }
+  // }
 
 
   const handleLabelClick = async () => {

@@ -15,12 +15,6 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
   const incomingEdges = edges.filter((edge) => edge.target === id);
   const outgoingEdges = edges.filter((edge) => edge.source === id);
 
-  // Connection limits
-  const maxIncomingConnections = 1; 
-  const maxOutgoingConnections = 1; 
-
-  const incomingConnectionCount = incomingEdges.length;
-  const outgoingConnectionCount = outgoingEdges.length;
   return (
 <div>
       <Handle

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 
 const MonoDirNode = ({ data, id, edges, updateEdge,handleLabelClick }) => {

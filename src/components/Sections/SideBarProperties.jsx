@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import SelectInput from '../Buttons/SelectInput';
-import RadioInput from '../Buttons/RadioInput';
-import TextInput from '../Buttons/TextInput';
+import  { useState, useEffect } from 'react';
 import "../Buttons/css/SideBarProp.css"
-import TopButton from '../Buttons/TopButton';
-import { Button } from 'react-bootstrap';
 import onDebugClickHandler from './Debug';
 import { Menu, X } from 'lucide-react';
 
@@ -20,10 +15,10 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
     if (selectedNode && selectedNode) {
       setNodeData(selectedNode.data);
       setNodeValueData(selectedNode.values)
-      if(selectedNode.data.Comment == "True"){
+      if(selectedNode.data.Comment === "True"){
         setIsCommented(true)
       }
-      if(selectedNode.data.Breakpoint == "True"){
+      if(selectedNode.data.Breakpoint === "True"){
         setIsDebug(true)
       }
 
