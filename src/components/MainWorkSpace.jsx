@@ -69,8 +69,23 @@ const MainWorkSpace = () => {
   const [redoStack, setRedoStack] = useState([]);
 
   const captureState = (nodes ,edges) => {
-    setUndoStack((prev) => [...prev, { nodes, edges }]);
-    setRedoStack([]); // Clear redo stack on new action
+    setUndoStack((prev) => {
+      // Check if the new { nodes, edges } is already in the stack
+      const isDuplicate = prev.some(
+          (entry) => 
+              JSON.stringify(entry.nodes) === JSON.stringify(nodes) &&
+              JSON.stringify(entry.edges) === JSON.stringify(edges)
+      );
+  
+      // If it's a duplicate, return the stack unchanged
+      if (isDuplicate) {
+          return prev;
+      }
+  
+      return [...prev, { nodes, edges }];
+  });
+    setRedoStack([]);
+
   };
 
   const handleUndo = () => {

@@ -3,11 +3,10 @@ import { Handle, Position } from '@xyflow/react';
 import { useState } from 'react';
  
 export default memo(({ id, data }) => {
-    const [LeftHandles, setLeftHandles] = useState([0]); // Dynamic handles on the right
+    // const [LeftHandles] = useState(["variables1","variables2"]); 
+    const LeftHandles = data.variableNodes;
+    let handleQuantity = LeftHandles.length
 
-    const addHandle = () => {
-        setLeftHandles((prev) => [...prev, prev.length+1]); // Add a new handle
-    };
   return (
             <div > 
                {data.image ? (
@@ -25,16 +24,23 @@ export default memo(({ id, data }) => {
 
 
         {/* Dynamic right handles */}
-        {LeftHandles.map((index) => (
-        <Handle
-            key={`left-${index}`}
-            type="target"
-            position={Position.Left}
-            id={`left-${index}`}
-            style={{ width:"2px", height:"2px" }}
-            onConnect={() => addHandle()}
-        />
-        ))}
+
+        {LeftHandles.map((value, index) => (
+                <Handle
+                    key={`left-${value}`}
+                    type="target"
+                    position={Position.Left}
+                    id={`left-${value}`}
+                    style={{
+                      top: `${(index + 1) * (50 / (handleQuantity + 1))}px`,
+                    }}  
+                />
+            ))}
+
+
+
+
+
 
         <Handle type="source" position={Position.Bottom} id="bottom"/>
     </div>

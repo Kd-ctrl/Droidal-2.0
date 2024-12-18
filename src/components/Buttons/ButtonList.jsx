@@ -409,7 +409,7 @@ addNode9: {
     label: 'Add',
     nodeProps: {
       type:'computational',
-      data: { label:'Add',image:"Plus-sign.png",...buttonContent.Add},
+      data: {variableNodes : ["Variable1","Variable2","Variable3","Variable4"], label:'Add',image:"Plus-sign.png",...buttonContent.Add},
       style: {backgroundColor: 'white'},
       values:{ ...buttonValue.Add },
       backgroundColor: 'transparent',
