@@ -21,8 +21,8 @@ import "./Sections/css/MainWorkSpace.css";
 import Search from './Sections/Search.jsx';
 import onNodeDoubleClickHandler from './Sections/DoubleClick.jsx';
 import onDebugClickHandler from '../components/Sections/Debug.jsx';
-import { Menu, X } from 'lucide-react';
-
+import { Lasso, Menu, X } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 import ComputationalNode from './Sections/ComputationalNode.jsx';
 import FloatingButtons from './Sections/FloatingButtonExample.jsx';
 import handleExport from './Sections/JsonExportBackend.jsx';
@@ -56,7 +56,6 @@ const MainWorkSpace = () => {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
 
 
@@ -64,6 +63,72 @@ const MainWorkSpace = () => {
     setReactFlowInstance(instance); // Set the React Flow instance
   };
 
+
+
+  const [undoStack, setUndoStack] = useState([]);
+  const [redoStack, setRedoStack] = useState([]);
+
+  const captureState = (nodes ,edges) => {
+    setUndoStack((prev) => [...prev, { nodes, edges }]);
+    setRedoStack([]); // Clear redo stack on new action
+  };
+
+  const handleUndo = () => {
+    console.log(undoStack);
+    if (undoStack.length > 0) {
+      const lastState = undoStack.pop(); // Get the last state from the undo stack
+  
+      // Save the current state for redo
+      setRedoStack((prev) => [...prev, { nodes, edges }]);
+  
+      if (lastState) {
+        // Restore the previous state
+          setNodes(lastState.nodes); // Undo nodes
+          setEdges(lastState.edges); // Undo edges
+      }
+      refreshNode(nodes)
+  
+      // Update the undo stack
+      setUndoStack([...undoStack]);
+    }
+  };
+  
+  const handleRedo = () => {
+    console.log(redoStack);
+    if (redoStack.length > 0) {
+      const nextState = redoStack.pop(); // Get the next state from the redo stack
+  
+      // Save the current state for undo
+      setUndoStack((prev) => [...prev, { nodes, edges }]);
+  
+      if (nextState) {
+        // Restore the next state
+          setNodes(nextState.nodes); 
+          setEdges(nextState.edges); 
+      }
+      refreshNode(nodes)
+      // Update the redo stack
+      setRedoStack([...redoStack]);
+    }
+  };
+  
+  
+  
+  const handleNodesChange = (changes) => {
+    if (changes[0].dragging !==true && changes[0].type!=="dimensions" ){
+      captureState(nodes ,edges);
+    }
+    onNodesChange(changes);
+  };
+  
+  const handleEdgesChange = (changes) => {
+    onEdgesChange(changes);
+  };
+
+  const handleConnect = (params) => {
+
+    onConnect(params);
+  };
 
 
   const onConnect = useCallback(
@@ -135,7 +200,6 @@ const MainWorkSpace = () => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-  
       const result = await response.json();
   
       // Find the start node and its incoming/outgoing edges
@@ -196,6 +260,32 @@ const MainWorkSpace = () => {
     setSearchVal('')
   };
 
+
+
+  const updateEmptyList = () => {
+    if (!selectedNode || !selectedNode.data) return; // Ensure selectedNode and data exist
+  
+    const data = selectedNode.data;
+  
+    Object.keys(data).forEach((key) => {
+      const field = data[key];
+  
+      // Check if the field has options and no valid value set
+      if (field?.options && (!field.value || field.value.trim() === "")) {
+        // Update to the first option
+        updateNodeProperties(key, field.options[0]);
+      }
+    });
+  };
+  
+
+  const onSaveclick = () =>{
+    updateEmptyList()
+    setSelectedNode(null)
+    setSelectedEdge(null)
+    setMenuPosition(null)
+    setSearchVal('')
+  }
   const onPaneClick = () =>{
     setSelectedNode(null)
     setSelectedEdge(null)
@@ -204,33 +294,67 @@ const MainWorkSpace = () => {
   }
 
   useEffect(() => {
-    const handlePaste = (event) => {
-      const pastedText = event.clipboardData.getData('Text');
-      importFromJSON(pastedText, setNodes, setEdges);
+    const handlePaste = async (event) => {
+      try {
+        const clipboardText = await navigator.clipboard.readText();
+        importFromJSON(clipboardText, { setNodes, setEdges });
+      } catch (err) {
+        console.error("Failed to read clipboard contents:", err);
+      }
     };
 
+    const handleCopy = (event) =>{
+      if (event.type  === 'copy') {
+        try{
+          const modifiedNode = {
+            ...selectedNode,
+            id: uuidv4(), 
+          };;
+
+          const jsonString = JSON.stringify(modifiedNode, null, 2); 
+          navigator.clipboard
+          .writeText(jsonString)
+          .then(() => {
+            alert('Data copied to clipboard!');
+          })
+          .catch((err) => {
+            console.error('Failed to copy: ', err);
+          })
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+}
+  
     const handleKeyDown = (event) => {
-      if (event.key === 'Delete' && selectedEdge) {
-        deleteEdge(selectedEdge.id);
-      }
-      if(event.key === 'Delete' && selectedNode){
-        deleteNode(selectedNode.id)
+      if (event.key === 'Delete') {
+        if (selectedEdge) {
+          deleteEdge(selectedEdge.id);
+        }
+        if (selectedNode) {
+          deleteNode(selectedNode.id);
+        }
       }
     };
-
+  
     if (workspaceRef.current) {
       workspaceRef.current.addEventListener('paste', handlePaste);
     }
 
+    document.addEventListener('copy', handleCopy);
+  
     document.addEventListener('keydown', handleKeyDown);
-
+  
     return () => {
       if (workspaceRef.current) {
         workspaceRef.current.removeEventListener('paste', handlePaste);
       }
+      document.removeEventListener('keydown', handleCopy);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  });
+  }, [selectedNode, selectedEdge, setNodes, setEdges]);  // Include necessary dependencies
+  
 
   const deleteEdge = (edgeId) => {
     const newEdges = edges.filter((edge) => edge.id !== edgeId);
@@ -247,7 +371,8 @@ const MainWorkSpace = () => {
     );
     setEdges(newEdges);
 
-    setSelectedNode(null); 
+    setSelectedNode(null);
+    captureState(nodes ,edges); 
   };
 
   const clearAll = () => {
@@ -262,6 +387,7 @@ const MainWorkSpace = () => {
 
   const onDrop = useCallback(
     (event) => {
+      captureState(nodes ,edges);
       event.preventDefault();
 
       const reactFlowBounds = event.target.getBoundingClientRect();
@@ -274,16 +400,21 @@ const MainWorkSpace = () => {
         y: event.clientY - reactFlowBounds.top,
       };
 
-      setNodes((nds) => [
+      setNodes((nds) => {
+        const updatedNodes = [
         ...nds,
         {
           id: (nds.length + 1).toString(), 
           position,
           ...nodeProps,
         },
-      ])
-    },
+      ];
+      captureState(updatedNodes, edges);
+      return updatedNodes;
+    });
+  },
     [setNodes]
+    
   );
 
   const updateNodeProperties = (key, value) => {
@@ -345,6 +476,7 @@ const MainWorkSpace = () => {
     setIsExpanded(!isExpanded);
   };
 
+
   return (
     <div className="flex">
       <div 
@@ -356,9 +488,11 @@ const MainWorkSpace = () => {
         <ReactFlow
           nodes={nodes}
           edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
+          ref={workspaceRef}
+          onNodesChange={handleNodesChange}
+          onEdgesChange={handleEdgesChange}
+          // onNodeDragStop={onNodeDragStop}
+          onConnect={handleConnect}
           nodeTypes={nodeTypes}
           onPaneClick={onPaneClick}
           onEdgeClick={onEdgeClick}
@@ -418,7 +552,7 @@ const MainWorkSpace = () => {
             />
             <div className="mt-4">
               <button 
-                onClick={onPaneClick} 
+                onClick={onSaveclick} 
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               >
                 Save
@@ -456,6 +590,12 @@ const MainWorkSpace = () => {
         )}
 
         </div>
+        <button onClick={handleUndo} disabled={undoStack.length === 0}>
+          Undo
+        </button>
+        <button onClick={handleRedo} disabled={redoStack.length === 0}>
+          Redo
+        </button>
               <TopButton 
                 nodes={nodes} 
                 edges={edges} 

@@ -9,8 +9,13 @@ export default memo(({ id, data }) => {
         setLeftHandles((prev) => [...prev, prev.length+1]); // Add a new handle
     };
   return (
-            <div >
-            <img style={{width:"50px",height:"50px" }} src = "Plus-sign.png"/> 
+            <div > 
+               {data.image ? (
+        <img style={{ width: "50px", height: "50px" }} src={data.image} alt={data.label} />
+      ) : (
+        <>{data.label}</>
+      )}
+           
 
         {/* Single top handle */}
         <Handle type="target" position={Position.Top} id="top" />
@@ -27,15 +32,11 @@ export default memo(({ id, data }) => {
             position={Position.Left}
             id={`left-${index}`}
             style={{ width:"2px", height:"2px" }}
+            onConnect={() => addHandle()}
         />
         ))}
 
-        {/* Button to add handles (for demonstration) */}
-        {/* <div>
-        <button onClick={addHandle} style={{ marginTop: 50 }}>
-        add left handle
-        </button>
-        </div> */}
+        <Handle type="source" position={Position.Bottom} id="bottom"/>
     </div>
   );
 });

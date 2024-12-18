@@ -46,28 +46,26 @@ const copyToClipboard = (nodes, edges) => {
     }
   };
 
-
-const validateButton = (nodes, edges) => {
-  // Filter out all nodes except the 'start' node
-  const allButStartNodes = nodes.filter((node) => node.data.label !== 'start');
-
-  const unconnectedNodes = allButStartNodes.filter((node) => {
-    // Check if the node has any incoming edge
-    const hasIncomingEdge = edges.some((edge) => edge.target === node.id);
-    return !hasIncomingEdge; // Keep nodes with no incoming edges
-  });
-
-  if (unconnectedNodes.length > 0) {
-    const all_node_id= [];
-    console.log('Unconnected Nodes:', unconnectedNodes);
-    unconnectedNodes.forEach((unconnodes)=>{
-      all_node_id.push(unconnodes.data.label)
-    })
-    alert(`Some nodes are not connected to any edges!: ${all_node_id.join(', ')}`);
-  } else {
-    alert('All nodes are connected.');
-  }
-};
+  const validateButton = (nodes, edges) => {
+    // Find nodes with at least one unconnected handle
+    const unconnectedNodes = nodes.filter((node) => {
+      const hasIncomingEdge = edges.some((edge) => edge.target === node.id); // Check for target connections
+      const hasOutgoingEdge = edges.some((edge) => edge.source === node.id); // Check for source connections
+  
+      // Node is unconnected if it lacks either incoming or outgoing edges
+      return !hasIncomingEdge && !hasOutgoingEdge;
+    });
+  
+    if (unconnectedNodes.length > 0) {
+      // Gather labels of all unconnected nodes
+      const unconnectedLabels = unconnectedNodes.map((node) => node.data.label || node.id); // Fallback to id if label is missing
+      alert(`Some nodes are unconnected on one or more handles: ${unconnectedLabels.join(', ')}`);
+    } else {
+      alert('All nodes are fully connected.');
+    }
+  };
+  
+  
 
 const TopButton = ({ nodes, edges, setNodes, setEdges }) => {
   return (

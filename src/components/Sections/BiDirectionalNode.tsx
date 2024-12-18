@@ -16,8 +16,8 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
   const outgoingEdges = edges.filter((edge) => edge.source === id);
 
   // Connection limits
-  const maxIncomingConnections = 1; // Maximum incoming connections allowed
-  const maxOutgoingConnections = 1; // Maximum outgoing connections allowed
+  const maxIncomingConnections = 1; 
+  const maxOutgoingConnections = 1; 
 
   const incomingConnectionCount = incomingEdges.length;
   const outgoingConnectionCount = outgoingEdges.length;
@@ -28,7 +28,7 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
         type="target"
         position={Position.Top}
         id="top"
-        isConnectable={incomingConnectionCount < maxIncomingConnections} 
+        // isConnectable={incomingConnectionCount < maxIncomingConnections} 
       />
 <>
   {data["image"] ? (
@@ -42,7 +42,7 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
         type="source"
         position={Position.Bottom}
         id="bottom"
-        isConnectable={outgoingConnectionCount < maxOutgoingConnections} 
+        // isConnectable={outgoingConnectionCount < maxOutgoingConnections} 
       />
 </div>
 

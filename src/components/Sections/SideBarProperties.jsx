@@ -117,12 +117,13 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
             <div key={key} className="PropertyRow">
               
               <div className='label'>{key}:</div>
-
+              
               {/* Check for the type of the field and render accordingly */}
               {field?.type === 'select' ? (
+               
                 <select 
                   name={key}
-                  value={field.value}
+                  value={field.value && field.value.trim() !== "" ? field.value : field?.options?.[0]} 
                   onChange={(e) => handleSelectChange(e, key)}
                 >
                   {field?.options?.map((option, idx) => (
@@ -131,22 +132,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
                     </option>
                   ))}
                 </select>
-              ) : field?.type === 'radio' ? (
-                <div>
-                  {field?.options?.map((option, idx) => (
-                    <div className='label' key={idx}>
-                      <input
-                        type="radio"
-                        name={key}
-                        value={option}
-                        checked={field.value === option}
-                        onChange={(e) => handleSelectChange(e, key)}
-                      />
-                      {option}
-                    </div>
-                  ))}
-                </div>
-              ) : (
+              ) :  (
                 
                 <input
                   type="text"

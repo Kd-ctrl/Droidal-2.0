@@ -17,7 +17,7 @@ const buttonProperties = {
     addNode2: {
       label: 'Open Browser',
       nodeProps: {
-        type:'bidirectional',
+        type:'computational',
         data: { label: 'Open Browser',...buttonContent.OpenBrowser },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.OpenBrowser },
