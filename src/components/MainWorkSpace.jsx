@@ -4,6 +4,7 @@ import {
   MiniMap,
   Controls,
   Background,
+  BackgroundVariant,
   useNodesState,
   useEdgesState,
   addEdge,
@@ -53,6 +54,7 @@ const MainWorkSpace = () => {
   const [menuPosition, setMenuPosition] = useState(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [paneMenuPosition , setPaneMenuPosition] = useState(null);
 
 
 
@@ -146,7 +148,7 @@ const MainWorkSpace = () => {
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) =>
-        addEdge({ ...params, animated: true }, eds),
+        addEdge({ ...params,type: 'smoothstep' }, eds),
       ),
     [setEdges]
   );
@@ -299,6 +301,7 @@ const MainWorkSpace = () => {
     setSearchVal('')
   }
   const onPaneClick = () =>{
+    setPaneMenuPosition(null)
     setSelectedNode(null)
     setSelectedEdge(null)
     setMenuPosition(null)
@@ -475,6 +478,7 @@ const MainWorkSpace = () => {
 
   const handleNodeContextMenu = (event, node) => {
     event.preventDefault();
+    setPaneMenuPosition(null)
     setSelectedNode(node); 
     setMenuPosition({
       x: event.clientX,
@@ -488,6 +492,15 @@ const MainWorkSpace = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const handlePaneContextMenu = (event) =>{
+    event.preventDefault();
+    setSelectedNode(null)
+    setMenuPosition(null)
+    setPaneMenuPosition({
+      x: event.clientX,
+      y: event.clientY,
+    });
+  }
 
   return (
     <div className="flex">
@@ -510,11 +523,12 @@ const MainWorkSpace = () => {
           onEdgeClick={onEdgeClick}
           onNodeClick={onNodeClick}
           onNodeContextMenu={handleNodeContextMenu}
+          onPaneContextMenu={handlePaneContextMenu}
           onInit={handleInit} 
         >
           <Controls />
           <MiniMap />
-          <Background variant="dots" gap={12} size={1} />
+          {/* <Background variant="dots" gap={12} size={1} /> */}
         </ReactFlow>
 
         {menuPosition && (
@@ -543,6 +557,35 @@ const MainWorkSpace = () => {
             </div>
           </div>
         )}
+        {
+          paneMenuPosition&&(          
+          <div
+            className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
+            style={{
+              top: paneMenuPosition.y,
+              left: paneMenuPosition.x,
+            }}
+          >
+            <div className="mb-2">
+              <button 
+                onClick={onNodeDoubleClick} 
+                className="w-full px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              >
+                Variable
+              </button>
+            </div>
+            <div>
+              <button 
+                onClick={onDebugClick} 
+                className="w-full px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+              >
+                Constant
+              </button>
+            </div>
+          </div>
+
+          )
+        }
       </div>
       
       <div 

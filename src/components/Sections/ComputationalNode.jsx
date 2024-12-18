@@ -4,10 +4,10 @@ import { Handle, Position } from '@xyflow/react';
 export default memo(({ id, data }) => {
     // const [LeftHandles] = useState(["variables1","variables2"]); 
     const LeftHandles = data.variableNodes;
-    let handleQuantity = LeftHandles.length
+    let handleQuantity = LeftHandles?.length
 
   return (
-            <div > 
+            <div className='MonoDirNode'> 
                {data.image ? (
         <img style={{ width: "50px", height: "50px" }} src={data.image} alt={data.label} />
       ) : (
@@ -24,7 +24,7 @@ export default memo(({ id, data }) => {
 
         {/* Dynamic right handles */}
 
-        {LeftHandles.map((value, index) => (
+        {LeftHandles?.map((value, index) => (
                 <Handle
                     key={`left-${value}`}
                     type="target"

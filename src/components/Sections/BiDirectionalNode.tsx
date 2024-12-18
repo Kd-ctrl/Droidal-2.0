@@ -16,7 +16,7 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
   const outgoingEdges = edges.filter((edge) => edge.source === id);
 
   return (
-<div>
+<div className='MonoDirNode'>
       <Handle
       color='blue'
         type="target"

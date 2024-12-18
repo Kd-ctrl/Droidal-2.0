@@ -101,7 +101,7 @@ button:focus {
     border-radius: 8px; /* Rounded corners */
     font-size: 14px;
     /* color: #000000;  */
-    padding: 1px;
+    padding: 5px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
