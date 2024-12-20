@@ -27,6 +27,10 @@ import { v4 as uuidv4 } from 'uuid';
 import ComputationalNode from './Sections/ComputationalNode.jsx';
 import FloatingButtons from './Sections/FloatingButtonExample.jsx';
 import handleExport from './Sections/JsonExportBackend.jsx';
+import ConstantNode from './Sections/ConstantNode.jsx';
+import buttonContent from './Buttons/ButtonContent.jsx';
+import buttonValue from './Buttons/ButtonValues.jsx';
+import VariableNode from './Sections/VariableNode.jsx';
 
 const initialNodes = [
   {
@@ -39,6 +43,26 @@ const initialNodes = [
     values: { value: 'start' }
   }
 ];
+
+
+let varnodes = [{
+  label: 'Variable',
+  data: { label: 'Variable',...buttonContent.Variable},
+  type:'variablenode',
+  style: { backgroundColor: 'lightblue'},
+  values:{ ...buttonValue.Variable },
+  backgroundColor: 'lightblue',
+}]
+
+
+let constnodes= [{
+  label: 'Constant',
+  data: { label: 'Constant',...buttonContent.Constant},
+  type:'constantNode',
+  style: { backgroundColor: 'lightblue'},
+  values:{ ...buttonValue.Constant },
+  backgroundColor: 'lightblue' ,
+}]
 
 const MainWorkSpace = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -169,6 +193,8 @@ const MainWorkSpace = () => {
     tridirectional:(props)=>(<TriDirectionalNode{...props} edges={edges} />),
     monodir:(props)=>(<NormalNode {...props} edges={edges} updateEdge={updateEdge} handleLabelClick={handleLabelClick}/>),
     computational:(props)=>(<ComputationalNode{...props} edges={edges} />),
+    constantNode:(props)=>(<ConstantNode{...props}nodes = {nodes} edges={edges}/>),
+    variablenode:(props)=>(<VariableNode{...props}nodes = {nodes} edges={edges}/>),
     floatingbutton:(props)=>(<FloatingButtons{...props} edges={edges} nodes={nodes} setNodes={setNodes} setEdges={setEdges} reactFlowInstance = {reactFlowInstance} />),
   };
 
@@ -270,6 +296,7 @@ const MainWorkSpace = () => {
 
   const onNodeClick = (event, node) => {
     onNodeClickHandler(event, node, setSelectedNode);
+    setPaneMenuPosition(null)
     setMenuPosition(null)
     setSearchVal('')
   };
@@ -309,38 +336,38 @@ const MainWorkSpace = () => {
   }
 
   useEffect(() => {
-    const handlePaste = async (event) => {
-      try {
-        const clipboardText = await navigator.clipboard.readText();
-        importFromJSON(clipboardText, { setNodes, setEdges });
-      } catch (err) {
-        console.error("Failed to read clipboard contents:", err);
-      }
-    };
+//     const handlePaste = async (event) => {
+//       try {
+//         const clipboardText = await navigator.clipboard.readText();
+//         importFromJSON(clipboardText, { setNodes, setEdges });
+//       } catch (err) {
+//         console.error("Failed to read clipboard contents:", err);
+//       }
+//     };
 
-    const handleCopy = (event) =>{
-      if (event.type  === 'copy') {
-        try{
-          const modifiedNode = {
-            ...selectedNode,
-            id: uuidv4(), 
-          };;
+//     const handleCopy = (event) =>{
+//       if (event.type  === 'copy') {
+//         try{
+//           const modifiedNode = {
+//             ...selectedNode,
+//             id: uuidv4(), 
+//           };;
 
-          const jsonString = JSON.stringify(modifiedNode, null, 2); 
-          navigator.clipboard
-          .writeText(jsonString)
-          .then(() => {
-            alert('Data copied to clipboard!');
-          })
-          .catch((err) => {
-            console.error('Failed to copy: ', err);
-          })
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
-}
+//           const jsonString = JSON.stringify(modifiedNode, null, 2); 
+//           navigator.clipboard
+//           .writeText(jsonString)
+//           .then(() => {
+//             alert('Data copied to clipboard!');
+//           })
+//           .catch((err) => {
+//             console.error('Failed to copy: ', err);
+//           })
+//     }
+//     catch(err){
+//       console.log(err)
+//     }
+//   }
+// }
   
     const handleKeyDown = (event) => {
       if (event.key === 'Delete') {
@@ -353,19 +380,19 @@ const MainWorkSpace = () => {
       }
     };
   
-    if (workspaceRef.current) {
-      workspaceRef.current.addEventListener('paste', handlePaste);
-    }
+    // if (workspaceRef.current) {
+    //   workspaceRef.current.addEventListener('paste', handlePaste);
+    // }
 
-    document.addEventListener('copy', handleCopy);
+    // document.addEventListener('copy', handleCopy);
   
     document.addEventListener('keydown', handleKeyDown);
   
     return () => {
-      if (workspaceRef.current) {
-        workspaceRef.current.removeEventListener('paste', handlePaste);
-      }
-      document.removeEventListener('keydown', handleCopy);
+      // if (workspaceRef.current) {
+      //   workspaceRef.current.removeEventListener('paste', handlePaste);
+      // }
+      // document.removeEventListener('keydown', handleCopy);
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedNode, selectedEdge, setNodes, setEdges]);  // Include necessary dependencies
@@ -399,6 +426,65 @@ const MainWorkSpace = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+
+
+
+  const onVariableDrop =useCallback(
+    (event) => {
+    setPaneMenuPosition(null)
+
+    const position = {
+      x: event.clientX ,
+      y: event.clientY,
+    };
+
+    const newNode = structuredClone(varnodes);
+
+    setNodes((nds) => {
+      const updatedNodes = [
+      ...nds,
+      {
+        id: (nds.length + 1).toString(), 
+        label: newNode[0].label,
+        ...newNode[0], 
+        position: position,
+      },
+      
+    ];
+    return updatedNodes;
+  });
+  }, [setNodes]
+)
+
+
+
+const onConstdrop =useCallback(
+  (event) => {
+  setPaneMenuPosition(null)
+
+  const position = {
+    x: event.clientX ,
+    y: event.clientY,
+  };
+
+  const newNode = structuredClone(constnodes);
+
+  setNodes((nds) => {
+    const updatedNodes = [
+    ...nds,
+    {
+      id: (nds.length + 1).toString(), 
+      label: newNode[0].label,
+      ...newNode[0], 
+      position: position,
+    },
+    
+  ];
+  return updatedNodes;
+});
+}, [setNodes]
+)
+
 
   const onDrop = useCallback(
     (event) => {
@@ -568,16 +654,16 @@ const MainWorkSpace = () => {
           >
             <div className="mb-2">
               <button 
-                onClick={onNodeDoubleClick} 
-                className="w-full px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                onClick={onVariableDrop} 
+                className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
               >
                 Variable
               </button>
             </div>
             <div>
               <button 
-                onClick={onDebugClick} 
-                className="w-full px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                onClick={onConstdrop} 
+                className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
               >
                 Constant
               </button>

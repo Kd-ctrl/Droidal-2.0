@@ -14,6 +14,13 @@ const valuestoconvert = {
     "Delay (in Seconds)":"delay",
     "Comment":"comment",
     "Breakpoint":"breakpoint",
+    "Constant Type":"constanttype",//these 
+    "Constant Name":"constantname",//are
+    "Constant Value":"constantvalue",//all
+    "Variable":"variable",//tochange
+    "Constant":"constant"//words
+
+    
             // "Assign":
             // "Variable Type":
             // "Variable Name":

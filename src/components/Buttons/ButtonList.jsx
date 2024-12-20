@@ -424,9 +424,28 @@ addNode9: {
       values:{ ...buttonValue.Testnode },
       backgroundColor: 'transparent',
     },
-  }
   },
-
+  addNode40: {
+    label: 'Variable',
+    nodeProps: {
+      data: { label: 'Variable',...buttonContent.Variable},
+      type:'constantNode',
+      style: { backgroundColor: 'lightblue'},
+      values:{ ...buttonValue.Variable },
+      backgroundColor: 'lightblue' ,
+    },
+  },
+  addNode41: {
+    label: 'Constant',
+    nodeProps: {
+      data: { label: 'Constant',...buttonContent.Constant},
+      type:'constantNode',
+      style: { backgroundColor: 'lightblue'},
+      values:{ ...buttonValue.Constant },
+      backgroundColor: 'lightblue' ,
+    },
+  },
+  },
     };
 
 

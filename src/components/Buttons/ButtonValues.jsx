@@ -320,6 +320,21 @@ const buttonValue = {
         "Comment":"",
         "Breakpoint":"",
         "driver":"",
+    },
+    "Variable":{
+        "Variable Type": "",
+        "Variable Name":"",
+        "Variable Value":"",
+        "Comment": "",
+        "Breakpoint": "",
+    }
+    ,
+    "Constant":{
+        "Constant Type":"",
+        "Constant Name":"",
+        "Constant Value":"",
+        "Comment": "",
+        "Breakpoint": "",
     }
 
 }
