@@ -337,15 +337,14 @@ const buttonContent = {
         "Breakpoint": "",
     },
     "Variable":{
-        "Variable Type": {"options":["String","Int"],"type":"select", "value":""},
+        "Variable Type": "",
         "Variable Name":{"value":""},
         "Variable Value":{"value":""},
         "Comment": "",
         "Breakpoint": "",
     },
     "Constant":{
-        "Constant Type": {"options":["String","Int"],"type":"select", "value":""},
-        "Constant Name":{"value":""},
+        "Constant Type": "",
         "Constant Value":{"value":""},
         "Comment": "",
         "Breakpoint": "",

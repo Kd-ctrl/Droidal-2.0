@@ -103,42 +103,47 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
     <div className='header2'>Properties</div>
     <div className="NodeProperties">
       <div className="NodeBody">
-        {Object.keys(nodeData).map((key) => {
-          if (!["label", "driver", "Comment","Breakpoint","image"].includes(key)) {
-          const field = nodeData[key];
+      {Object.keys(nodeData).map((key) => {
+  if (["label", "driver", "Comment", "Breakpoint", "image"].includes(key)) {
+    return null; // Skip rendering for these keys
+  }
 
-          return (
-            
-            <div key={key} className="PropertyRow">
-              
-              <div className='label'>{key}:</div>
-              
-              {/* Check for the type of the field and render accordingly */}
-              {field?.type === 'select' ? (
-               
-                <select 
-                  name={key}
-                  value={field.value && field.value.trim() !== "" ? field.value : field?.options?.[0]} 
-                  onChange={(e) => handleSelectChange(e, key)}
-                >
-                  {field?.options?.map((option, idx) => (
-                    <option key={idx} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              ) :  (
-                
-                <input
-                  type="text"
-                  name={key}
-                  value={field.value || ''}
-                  onChange={(e) => handleSelectChange(e, key)}
-                />
-              )}
-            </div>
-          );
-}})}
+  const field = nodeData[key];
+
+  if (field?.type === 'select') {
+    return (
+      <div key={key} className="PropertyRow">
+        <div className="label">{key}:</div>
+        <select
+          name={key}
+          value={field.value?.trim() || field?.options?.[0]}
+          onChange={(e) => handleSelectChange(e, key)}
+        >
+          {field?.options?.map((option, idx) => (
+            <option key={idx} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  } else if (typeof field?.value === 'string' && key === "Variable Type" || key === "Constant Type") {
+    return null; // Skip rendering for "Variable Type"
+  } else {
+    return (
+      <div key={key} className="PropertyRow">
+        <div className="label">{key}:</div>
+        <input
+          type="text"
+          name={key}
+          value={field.value || ''}
+          onChange={(e) => handleSelectChange(e, key)}
+        />
+      </div>
+    );
+  }
+})}
+
       </div>
     </div>
     </>

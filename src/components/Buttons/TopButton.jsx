@@ -1,4 +1,4 @@
-import handleExport from '../Sections/JsonExportBackend';
+import HandleExport from '../Sections/JsonExportBackend';
 import "./css/TopButton.css"
 import importFromJSON from "../Sections/JsonImport";
 import { Copy, Download, Clipboard,TicketCheck } from 'lucide-react';
@@ -7,7 +7,7 @@ import { Copy, Download, Clipboard,TicketCheck } from 'lucide-react';
 
 
 const exportToFile = (nodes, edges) =>{
-    let jsonOutput = handleExport(nodes,edges)
+    let jsonOutput = HandleExport(nodes,edges)
     if (jsonOutput != null){
     jsonOutput = JSON.stringify(jsonOutput);
     const blob = new Blob([jsonOutput], { type: 'application/json' });

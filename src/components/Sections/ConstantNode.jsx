@@ -61,15 +61,15 @@ const onConstantTypeBlur = () => {
 
   return (
     <div
-      className="MonoDirNode"
       style={{
         fontSize: "14px",
-        padding: "10px",
+        padding: "1px",
         cursor: "pointer",
       }}
     >
-      {data?.label}
-      <select
+
+
+      {/* <select
         onClick={(evt) => evt.stopPropagation()}
         value={localConstantType} 
         onChange={onConstantTypeChange}
@@ -89,7 +89,7 @@ const onConstantTypeBlur = () => {
         onClick={(evt) => evt.stopPropagation()}
         value={localValueName}
         style={{ display: "block", marginBottom: "10px" }}
-      />
+      /> */}
       <input
         placeholder="Enter Constant Value"
         onChange={onValueChange}

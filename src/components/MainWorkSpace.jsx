@@ -8,6 +8,7 @@ import {
   useNodesState,
   useEdgesState,
   addEdge,
+  MarkerType
 } from '@xyflow/react';
 import onNodeClickHandler from './Sections/onClick.jsx';
 import SideBarNew from './Sections/SideBarNew';
@@ -26,11 +27,12 @@ import { Lasso, Menu, X } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import ComputationalNode from './Sections/ComputationalNode.jsx';
 import FloatingButtons from './Sections/FloatingButtonExample.jsx';
-import handleExport from './Sections/JsonExportBackend.jsx';
+import HandleExport from './Sections/JsonExportBackend.jsx';
 import ConstantNode from './Sections/ConstantNode.jsx';
 import buttonContent from './Buttons/ButtonContent.jsx';
 import buttonValue from './Buttons/ButtonValues.jsx';
 import VariableNode from './Sections/VariableNode.jsx';
+import { useAsyncError } from 'react-router-dom';
 
 const initialNodes = [
   {
@@ -51,7 +53,6 @@ let varnodes = [{
   type:'variablenode',
   style: { backgroundColor: 'lightblue'},
   values:{ ...buttonValue.Variable },
-  backgroundColor: 'lightblue',
 }]
 
 
@@ -59,9 +60,8 @@ let constnodes= [{
   label: 'Constant',
   data: { label: 'Constant',...buttonContent.Constant},
   type:'constantNode',
-  style: { backgroundColor: 'lightblue'},
+  style: { backgroundColor: 'lightblue', border:"5px solid red"},
   values:{ ...buttonValue.Constant },
-  backgroundColor: 'lightblue' ,
 }]
 
 const MainWorkSpace = () => {
@@ -79,6 +79,8 @@ const MainWorkSpace = () => {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [loading, setLoading] = useState(false);
   const [paneMenuPosition , setPaneMenuPosition] = useState(null);
+  const [inputType, setInputType] = useState(null);
+  const[type,settype]=useState(null)
 
 
 
@@ -172,7 +174,16 @@ const MainWorkSpace = () => {
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) =>
-        addEdge({ ...params,type: 'smoothstep' }, eds),
+        addEdge(
+          {
+            ...params,
+            type: 'smoothstep',
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+            },
+          },
+          eds
+        )
       ),
     [setEdges]
   );
@@ -198,35 +209,14 @@ const MainWorkSpace = () => {
     floatingbutton:(props)=>(<FloatingButtons{...props} edges={edges} nodes={nodes} setNodes={setNodes} setEdges={setEdges} reactFlowInstance = {reactFlowInstance} />),
   };
 
-  // const addNode = (nodeProps) => {
-  //   if (nodes.length !== 0){
-  //     let bottomMostNode = getBottomMostNode();
-  //     setNodes((nds) => [
-  //       ...nds,
-  //       {
-  //         id: (nds.length + 1).toString(), 
-  //         position: { x:bottomMostNode.position.x, y:bottomMostNode.position.y+60},
-  //         ...nodeProps,
-  //       },
-  //     ]);
-  //   } else {
-  //     setNodes((nds) => [
-  //       ...nds,
-  //       {
-  //         id: (nds.length + 1).toString(), 
-  //         position: { x:centerOfViewport.x, y: centerOfViewport.y},
-  //         ...nodeProps,
-  //       },
-  //     ]);
-  //   }
-  // }
+
 
 
   const handleLabelClick = async () => {
     setLoading(true);
   
     // Define the JSON data to be sent in the request body
-    const requestData = handleExport(nodes, edges);
+    const requestData = HandleExport(nodes, edges);
   
     try {
       const response = await fetch('http://localhost:5000/calculate', {
@@ -328,6 +318,7 @@ const MainWorkSpace = () => {
     setSearchVal('')
   }
   const onPaneClick = () =>{
+    setInputType(null)
     setPaneMenuPosition(null)
     setSelectedNode(null)
     setSelectedEdge(null)
@@ -335,7 +326,7 @@ const MainWorkSpace = () => {
     setSearchVal('')
   }
 
-  useEffect(() => {
+//   useEffect(() => {
 //     const handlePaste = async (event) => {
 //       try {
 //         const clipboardText = await navigator.clipboard.readText();
@@ -369,33 +360,33 @@ const MainWorkSpace = () => {
 //   }
 // }
   
-    const handleKeyDown = (event) => {
-      if (event.key === 'Delete') {
-        if (selectedEdge) {
-          deleteEdge(selectedEdge.id);
-        }
-        if (selectedNode) {
-          deleteNode(selectedNode.id);
-        }
-      }
-    };
+//     const handleKeyDown = (event) => {
+//       if (event.key === 'Delete') {
+//         if (selectedEdge) {
+//           deleteEdge(selectedEdge.id);
+//         }
+//         if (selectedNode) {
+//           deleteNode(selectedNode.id);
+//         }
+//       }
+//     };
   
-    // if (workspaceRef.current) {
-    //   workspaceRef.current.addEventListener('paste', handlePaste);
-    // }
+//     if (workspaceRef.current) {
+//       workspaceRef.current.addEventListener('paste', handlePaste);
+//     }
 
-    // document.addEventListener('copy', handleCopy);
+//     document.addEventListener('copy', handleCopy);
   
-    document.addEventListener('keydown', handleKeyDown);
+//     document.addEventListener('keydown', handleKeyDown);
   
-    return () => {
-      // if (workspaceRef.current) {
-      //   workspaceRef.current.removeEventListener('paste', handlePaste);
-      // }
-      // document.removeEventListener('keydown', handleCopy);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedNode, selectedEdge, setNodes, setEdges]);  // Include necessary dependencies
+//     return () => {
+//       if (workspaceRef.current) {
+//         workspaceRef.current.removeEventListener('paste', handlePaste);
+//       }
+//       document.removeEventListener('keydown', handleCopy);
+//       document.removeEventListener('keydown', handleKeyDown);
+//     };
+//   }, [selectedNode, selectedEdge, setNodes, setEdges]); 
   
 
   const deleteEdge = (edgeId) => {
@@ -429,8 +420,67 @@ const MainWorkSpace = () => {
 
 
 
+
+  const onInputDrop = useCallback(
+    (event, value) => {
+      let color;
+      if (value === "Int"){
+        color = "#ada0f5"
+      }
+      else{
+        color = "#cf70f5"
+      }
+      setSelectedNode();
+  
+      setPaneMenuPosition(null);
+  
+      const position = {
+        x: event.clientX,
+        y: event.clientY,
+      };
+
+      let newNode;
+      if (inputType === 'Variable') {
+        newNode = structuredClone(varnodes);
+        newNode[0].data['Variable Type'] = newNode[0].data['Variable Type'] || {}; 
+        newNode[0].data['Variable Type']['value'] = value;
+        newNode[0].values['Variable Type'] = value;
+
+      } else {
+        newNode = structuredClone(constnodes);
+        newNode[0].data['Constant Type'] = newNode[0].data['Constant Type'] || {}; 
+        newNode[0].data['Constant Type']['value'] = value;
+        newNode[0].values['Constant Type'] = value;
+      }
+
+      setNodes((nds) => {
+        console.log(inputType);
+        const updatedNodes = [
+          ...nds,
+          {
+            id: (nds.length + 1).toString(),
+            label: newNode[0]?.label,
+            value: newNode[0]?.data?.['Variable Type']?.['value'] || newNode[0]?.data?.['Constant Type']?.['value'] || newNode[0]?.values?.['Variable Type']||newNode[0]?.values?.['Constant Type'],
+            border:newNode[0].style["border"] = `2px solid ${color}`,
+            backgroundColor:newNode[0].style["backgroundColor"] = `${color}`,
+            ...newNode[0], 
+            position: position,
+          },
+        ];
+  
+        setInputType(null);
+        return updatedNodes;
+      });
+    },
+    [inputType, setNodes] // Dependencies for useCallback
+  );
+  
+
+
+
   const onVariableDrop =useCallback(
     (event) => {
+    setInputType(null)
     setPaneMenuPosition(null)
 
     const position = {
@@ -441,6 +491,7 @@ const MainWorkSpace = () => {
     const newNode = structuredClone(varnodes);
 
     setNodes((nds) => {
+      console.log(inputType)
       const updatedNodes = [
       ...nds,
       {
@@ -460,6 +511,7 @@ const MainWorkSpace = () => {
 
 const onConstdrop =useCallback(
   (event) => {
+  setInputType(null)
   setPaneMenuPosition(null)
 
   const position = {
@@ -644,7 +696,35 @@ const onConstdrop =useCallback(
           </div>
         )}
         {
-          paneMenuPosition&&(          
+          paneMenuPosition&&!inputType&&(
+            <div
+            className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
+            style={{
+              top: paneMenuPosition.y+50,
+              left: paneMenuPosition.x+100,
+            }}
+          >
+            <div className="mb-2">
+              <button 
+                 onClick={()=> setInputType("Variable")}
+                className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
+              >
+                Variable
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={() => setInputType("Constant")}
+                  className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
+              >
+                Constant
+              </button>
+            </div>
+          </div>
+          )
+        }
+        {
+          paneMenuPosition&&inputType&&(          
           <div
             className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
             style={{
@@ -654,18 +734,18 @@ const onConstdrop =useCallback(
           >
             <div className="mb-2">
               <button 
-                onClick={onVariableDrop} 
+                onClick={(e)=>onInputDrop(e,"Int")} 
                 className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
               >
-                Variable
+                int
               </button>
             </div>
             <div>
               <button 
-                onClick={onConstdrop} 
+                onClick={(e)=>onInputDrop(e, "String")} 
                 className="w-full px-4 py-2 bg-white text-gray-800 font-roboto rounded-md border border-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition"
               >
-                Constant
+                String
               </button>
             </div>
           </div>

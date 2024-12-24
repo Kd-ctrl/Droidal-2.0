@@ -331,7 +331,6 @@ const buttonValue = {
     ,
     "Constant":{
         "Constant Type":"",
-        "Constant Name":"",
         "Constant Value":"",
         "Comment": "",
         "Breakpoint": "",

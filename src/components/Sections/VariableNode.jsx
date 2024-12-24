@@ -61,15 +61,14 @@ const onVariableTypeBlur = () => {
 
   return (
     <div
-      className="MonoDirNode"
       style={{
         fontSize: "14px",
-        padding: "10px",
+        padding: "3px",
         cursor: "pointer",
       }}
     >
-      {data?.label}
-      <select
+          {data.label === "Variable" ? (data["Variable Name"]?.value  ? data["Variable Name"].value : data?.label) : null}
+      {/* <select
         onClick={(evt) => evt.stopPropagation()}
         value={localVariableType} 
         onChange={onVariableTypeChange}
@@ -81,23 +80,23 @@ const onVariableTypeBlur = () => {
             {eachOption}
           </option>
         ))}
-      </select>
-      <input
+      </select> */}
+      {/* <input
         placeholder="Enter Variable Name"
         onChange={onNameChange}
         onBlur={onNameBlur}
         onClick={(evt) => evt.stopPropagation()}
         value={localValueName}
         style={{ display: "block", marginBottom: "10px" }}
-      />
-      <input
+      /> */}
+      {/* <input
         placeholder="Enter Variable Value"
         onChange={onValueChange}
         onBlur={onValueBlur}
         onClick={(evt) => evt.stopPropagation()}
         value={localValueValue}
         style={{ display: "block" }}
-      />
+      /> */}
 
       <Handle type="source" position={Position.Right} id="right" />
     </div>
