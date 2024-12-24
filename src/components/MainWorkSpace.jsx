@@ -60,7 +60,7 @@ let constnodes= [{
   label: 'Constant',
   data: { label: 'Constant',...buttonContent.Constant},
   type:'constantNode',
-  style: { backgroundColor: 'lightblue', border:"5px solid red"},
+  style: { backgroundColor: 'lightblue', border:"1px solid red"},
   values:{ ...buttonValue.Constant },
 }]
 
@@ -425,10 +425,10 @@ const MainWorkSpace = () => {
     (event, value) => {
       let color;
       if (value === "Int"){
-        color = "#ada0f5"
+        color = "#f635ff"
       }
       else{
-        color = "#cf70f5"
+        color = "#fff635"
       }
       setSelectedNode();
   
@@ -700,8 +700,8 @@ const onConstdrop =useCallback(
             <div
             className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
             style={{
-              top: paneMenuPosition.y+50,
-              left: paneMenuPosition.x+100,
+              top: paneMenuPosition.y,
+              left: paneMenuPosition.x,
             }}
           >
             <div className="mb-2">
