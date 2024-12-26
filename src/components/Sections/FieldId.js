@@ -18,13 +18,13 @@ const valuestoconvert = {
     "Constant Name":"constantname",//are
     "Constant Value":"constantvalue",//all
     "Variable":"variable",//tochange
-    "Constant":"constant"//words
+    "Constant":"constant",//words
+    "Variable Type":"variabletype", //these too
+    "Variable Name":"variablename",//
+    "Variable Value":"variablevalue"//
 
     
             // "Assign":
-            // "Variable Type":
-            // "Variable Name":
-            // "Variable Value":
             // "Comment":
             // "Breakpoint":
             // "Openbroweser_V1":

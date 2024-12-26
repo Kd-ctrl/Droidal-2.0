@@ -48,14 +48,49 @@ const HandleExport = (nodes, edges) => {
     return { [`n${labelCounter}-${newLabel}`]: filteredData };
   };
 
+  const transformData = (data, keyMap) => {
+    return data.map((item) => {
+      const newItem = {};
+  
+      Object.keys(item).forEach((key) => {
+        // Extract the prefix (`n{i}-`) and the label portion of the key
+        const [prefix, ...labelParts] = key.split("-");
+        const labelKey = labelParts.join("-");
+  
+        // Transform the label part of the outer key using keyMap
+        const newLabelKey = keyMap[labelKey] || labelKey;
+  
+        // Transform the nested keys
+        if (typeof item[key] === "object" && !Array.isArray(item[key])) {
+          const nestedItem = item[key];
+          const newNestedItem = {};
+  
+          Object.keys(nestedItem).forEach((innerKey) => {
+            const newInnerKey = keyMap[innerKey] || innerKey; // Map nested keys
+            newNestedItem[newInnerKey] = nestedItem[innerKey];
+          });
+  
+          // Construct the new key with the original prefix and transformed label
+          newItem[`${prefix}-${newLabelKey}`] = newNestedItem;
+        } else {
+          // If the value is not an object, just transform the outer key
+          newItem[`${prefix}-${newLabelKey}`] = item[key];
+        }
+      });
+  
+      return newItem;
+    });
+  };
   // Start traversal from the first child nodes of the start node
   const initialEdges = edges.filter(
     (edge) => edge.source === startNode.id && edge.sourceHandle.startsWith("bottom")
   );
   initialEdges.forEach((edge) => traverse(edge.target));
 
-  return result;
+  // Transform the result using the valuestoconvert mapping
+  const transformedResult = transformData(result, valuestoconvert);
+
+  return transformedResult;
 };
 
 export default HandleExport;
-
