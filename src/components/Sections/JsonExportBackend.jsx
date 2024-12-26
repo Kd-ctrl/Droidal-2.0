@@ -20,8 +20,11 @@ const HandleExport = (nodes, edges) => {
     // Process child nodes (left handle) but skip recursion for their children
     const leftEdges = edges.filter((edge) => edge.target === nodeId && edge.targetHandle.startsWith("left"));
     leftEdges.forEach((edge) => {
-      const childNode = nodes.find((node) => node.id === edge.source);
-      if (childNode) {
+    const childNode = nodes.find((node) => node.id === edge.source); //if we need output assigned var comment filteredchildedge and change if to childnode
+
+    const filteredchildedge = edges.find((edge) => childNode.id === edge.target);
+    
+      if (!filteredchildedge) {
         result.push(processNode(childNode, counter++));
       }
     });
@@ -58,4 +61,5 @@ const HandleExport = (nodes, edges) => {
 };
 
 export default HandleExport;
+
 

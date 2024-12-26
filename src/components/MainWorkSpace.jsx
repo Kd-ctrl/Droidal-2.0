@@ -60,7 +60,7 @@ let constnodes= [{
   label: 'Constant',
   data: { label: 'Constant',...buttonContent.Constant},
   type:'constantNode',
-  style: { backgroundColor: 'lightblue', border:"1px solid red"},
+  style: { backgroundColor: 'lightblue'},
   values:{ ...buttonValue.Constant },
 }]
 
@@ -310,7 +310,13 @@ const MainWorkSpace = () => {
   };
   
 
+
+  const updateNodes= () =>{
+    
+  }
+
   const onSaveclick = () =>{
+    updateNodes()
     updateEmptyList()
     setSelectedNode(null)
     setSelectedEdge(null)
@@ -463,6 +469,7 @@ const MainWorkSpace = () => {
             value: newNode[0]?.data?.['Variable Type']?.['value'] || newNode[0]?.data?.['Constant Type']?.['value'] || newNode[0]?.values?.['Variable Type']||newNode[0]?.values?.['Constant Type'],
             border:newNode[0].style["border"] = `2px solid ${color}`,
             backgroundColor:newNode[0].style["backgroundColor"] = `${color}`,
+            borderRadius:newNode[0].style["borderRadius"] = "unset",
             ...newNode[0], 
             position: position,
           },
@@ -726,7 +733,7 @@ const onConstdrop =useCallback(
         {
           paneMenuPosition&&inputType&&(          
           <div
-            className="absolute z-50 bg-white border border-gray-300 rounded-lg pt-4 pb-4 pl-1 pr-1 shadow-md"
+            className="absolute z-50 bg-white border border-gray-300  pt-4 pb-4 pl-1 pr-1 shadow-md"
             style={{
               top: paneMenuPosition.y,
               left: paneMenuPosition.x,

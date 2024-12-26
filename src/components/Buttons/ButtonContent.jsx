@@ -332,6 +332,8 @@ const buttonContent = {
     "Add":{
         "Variable1":{"value":""},
         "Variable2":{"value":""},
+        "Variable3":{"value":""},
+        "Variable4":{"value":""},
         "Description": {"value":""},
         "Comment": "",
         "Breakpoint": "",

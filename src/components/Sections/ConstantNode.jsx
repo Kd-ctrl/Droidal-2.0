@@ -60,10 +60,9 @@ const onConstantTypeBlur = () => {
 };
 
   return (
-    <div
+    <div className="ConstantNode"
       style={{
         fontSize: "14px",
-        padding: "1px",
         cursor: "pointer",
       }}
     >
@@ -90,6 +89,7 @@ const onConstantTypeBlur = () => {
         value={localValueName}
         style={{ display: "block", marginBottom: "10px" }}
       /> */}
+
       <input
         placeholder="Enter Constant Value"
         onChange={onValueChange}
