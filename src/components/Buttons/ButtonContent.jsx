@@ -1,3 +1,5 @@
+import { Output } from "@mui/icons-material"
+
 const buttonContent = {
  //Update ButtonValues also when updating this 
  
@@ -350,7 +352,116 @@ const buttonContent = {
         "Constant Value":{"value":""},
         "Comment": "",
         "Breakpoint": "",
+    },
+    "Createfile":{
+        "Path File":{"value":""},
+        "File Name":{"value":""},
+        "Description": {"value":""},
+    },
+    "Textfileread":{
+        "File Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Openfile":{
+        "Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Msgbox":{
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Msgboxtimer":{
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Delay (in Seconds)": {"value":""},
+        "Description": {"value":""},
+    },
+    "Mfacode":{
+        "Tokens": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Copyfile":{
+        "Source Path": {"value":""},
+        "Destination Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Movefile":{
+        "Source Path": {"value":""},
+        "Destination Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Clickcoordinate":{
+        "X Coordinate": {"value":""},
+        "Y Coordinate": {"value":""},
+        "Description": {"value":""},
+    },
+    "Clickcoordinatevsimulate":{
+        "X Coordinate": {"value":""},
+        "Y Coordinate": {"value":""},
+        "Description": {"value":""},
+    },
+    "Hovercoordinate":{
+        "X Coordinate": {"value":""},
+        "Y Coordinate": {"value":""},
+        "Description": {"value":""},
+    },
+    "Typecoordinate":{
+        "X Coordinate": {"value":""},
+        "Y Coordinate": {"value":""},
+        "Send Keys": {"value":""},
+        "Description": {"value":""},
+    },
+    "Doubleclickcoordinate":{
+        "X Coordinate": {"value":""},
+        "Y Coordinate": {"value":""},
+        "Description": {"value":""},
+    },
+    "Fileexist":{
+        "File Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Minactivewindow":{
+        "Description": {"value":""},
+    },
+    "Movepreviouswindow":{
+        "Description": {"value":""},
+    },
+    "Datetime":{
+        "Expression": {"value":""},
+        "Type":{"value":""},
+        "Value": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Getlastestfile":{
+        "File Path": {"value":""},
+        "File Type":{"options":[".pdf",".xlsx",".csv",".docx",".dox",".png","jpg",".jpeg"],"type":"select", "value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "writetextfile":{
+        "File Path": {"value":""},
+        "Content": {"value":""},
+        "Description": {"value":""},
+    },
+    "Keyboardactivity":{
+        "Value": {"value":""},
+        "Description": {"value":""},
+    }, 
+    "Getlistoffiles":{
+        "Folder Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Renamefile":{
+        "Source Path": {"value":""},
+        "Destination Path": {"value":""},
+        "Description": {"value":""},
     }
+    
+
 }
 
 

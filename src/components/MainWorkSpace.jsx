@@ -81,7 +81,7 @@ const MainWorkSpace = () => {
   const [loading, setLoading] = useState(false);
   const [paneMenuPosition , setPaneMenuPosition] = useState(null);
   const [inputType, setInputType] = useState(null);
-  const[type,settype]=useState(null)
+  const[index,setindex]=useState(2)
 
 
 
@@ -181,6 +181,10 @@ const MainWorkSpace = () => {
             type: 'smoothstep',
             markerEnd: {
               type: MarkerType.ArrowClosed,
+              color: 'black',
+            },
+            style: {
+              stroke: 'black',
             },
           },
           eds
@@ -334,7 +338,7 @@ const MainWorkSpace = () => {
       const sourceNodeIndex = parseInt(edge.source);
       
       // Make sure target and source node indices are valid
-      if (targetNodeIndex >= 0 && targetNodeIndex <= nodes.length && sourceNodeIndex >= 0 && sourceNodeIndex <= nodes.length) {
+      if (targetNodeIndex >= 0  && sourceNodeIndex >= 0 ) {
         const sourceNode = nodes.find(node => node.id === edge.source);
         const targetNode = nodes.find(node => node.id === edge.target);
         
@@ -509,7 +513,7 @@ const MainWorkSpace = () => {
         x: event.clientX,
         y: event.clientY,
       };
-  
+
       let newNode;
       if (inputType === "Variable") {
         newNode = structuredClone(varnodes);
@@ -534,7 +538,7 @@ const MainWorkSpace = () => {
         const updatedNodes = [
           ...nds,
           {
-            id: (nds.length + 1).toString(),
+            id: (index).toString(),
             label: newNode[0]?.label,
             value:
               newNode[0]?.data?.["Variable Type"]?.["value"] ||
@@ -546,12 +550,13 @@ const MainWorkSpace = () => {
           },
         ];
         console.log("Updated Nodes:", updatedNodes); // Debug log
+        setindex((prevIndex) => prevIndex + 1);
         return updatedNodes;
       });
   
       setInputType(null);
     },
-    [inputType, setNodes] // Dependencies for useCallback
+    [inputType, setNodes, index] // Dependencies for useCallback
   );
   
 
@@ -619,7 +624,6 @@ const onConstdrop =useCallback(
 
   const onDrop = useCallback(
     (event) => {
-      console.log(nodes, edges)
       captureState(nodes ,edges);
       event.preventDefault();
 
@@ -637,16 +641,17 @@ const onConstdrop =useCallback(
         const updatedNodes = [
         ...nds,
         {
-          id: (nds.length + 1).toString(), 
+          id: (index + 1).toString(), 
           position,
           ...nodeProps,
         },
       ];
       captureState(updatedNodes, edges);
+      setindex((prevIndex) => prevIndex + 1);   
       return updatedNodes;
     });
   },
-    [setNodes]
+    [setNodes,  index]
     
   );
 

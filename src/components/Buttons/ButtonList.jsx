@@ -410,55 +410,86 @@ addNode9: {
     label: 'Add',
     nodeProps: {
       type:'arithop',
-      data: {variableNodes : ["Variable1","Variable2","Variable3","Variable4"], label:'Add',image:"Plus-sign.png",...buttonContent.Add},
+      data: {variableNodes : ["Variable1","Variable2","Variable3","Variable4"],label: 'Add',image:"Plus-sign.png",...buttonContent.Add},
       style: {backgroundColor: 'white', width: "25px", height: "25px"},
       values:{ ...buttonValue.Add },
       backgroundColor: 'transparent',
     },
   },
-  addNode39 : {
-    label: 'Test node',
-    nodeProps: {
-      type:'floatingbutton',
-      data: { label:'Test node',image:"Plus-sign.png",...buttonContent.Testnode},
-      style: {backgroundColor: 'white'},
-      values:{ ...buttonValue.Testnode },
-      backgroundColor: 'transparent',
-    },
-  },
-  addNode40: {
-    label: 'Variable',
-    nodeProps: {
-      data: { label: 'Variable',...buttonContent.Variable},
-      type:'constantNode',
-      style: { backgroundColor: 'lightblue'},
-      values:{ ...buttonValue.Variable },
-      backgroundColor: 'lightblue' ,
-    },
-  },
-  addNode41: {
-    label: 'Constant',
-    nodeProps: {
-      data: { label: 'Constant',...buttonContent.Constant},
-      type:'constantNode',
-      style: { backgroundColor: 'lightblue'},
-      values:{ ...buttonValue.Constant },
-      backgroundColor: 'lightblue' ,
-    },
-  },
-  },
-  "operations":{
-    addNode42: {
-      label: 'Constant',
+},
+
+  "System Activities":{
+    addNode39 : {
+      label: 'Create File',
       nodeProps: {
-        data: { label: 'Constant',...buttonContent.Constant},
-        type:'constantNode',
-        style: { backgroundColor: 'lightblue'},
-        values:{ ...buttonValue.Constant },
-        backgroundColor: 'lightblue' ,
+        type:'arithop',
+        data: {variableNodes : ["Path File","File Name"],label: 'Create File',image:"Plus-sign.png",...buttonContent.Createfile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Createfile },
+        backgroundColor: 'transparent',
       },
     },
-  }
+    addNode40 : {
+      label: 'Text File Read',
+      nodeProps: {
+        type:'arithop',
+        data: {variableNodes : ["File Path"],label: 'Text File Read',image:"Plus-sign.png",...buttonContent.Textfileread},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Textfileread },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNode41 : {
+      label: 'Open File',
+      nodeProps: {
+        type:'arithop',
+        data: {variableNodes : ["Path"],label: 'Open File',image:"Plus-sign.png",...buttonContent.Openfile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Openfile },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNode42 : {
+      label: 'Msg Box',
+      nodeProps: {
+        type:'tridirectional',
+        data: {image:"Plus-sign.png",label: 'Msg Box',...buttonContent.Msgbox},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Msgbox },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNode43 : {
+      label: 'Msg Box Timer',
+      nodeProps: {
+        type:'tridirectional',
+        data: {image:"Plus-sign.png",label: 'Msg Box Timer',...buttonContent.Msgboxtimer},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Msgboxtimer},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNode44 : {
+      label: 'MFA Code',
+      nodeProps: {
+        type:'tridirectional',
+        data: {image:"Plus-sign.png",label: 'MFA Code',...buttonContent.Mfacode},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Mfacode },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNode45 : {
+      label: 'Copy File',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Copy File',...buttonContent.Copyfile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Copyfile },
+        backgroundColor: 'transparent',
+      },
+    },  
+  },
     };
 
 

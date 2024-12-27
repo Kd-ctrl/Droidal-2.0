@@ -4,6 +4,7 @@ import { Handle, Position } from '@xyflow/react';
 export default memo(({ id, data }) => {
   const LeftHandles = data.variableNodes; // Assumed dynamic input
   let handleQuantity = LeftHandles?.length + 1;
+  let color
 
   return (
     <div className="ArithopNode">
@@ -12,7 +13,18 @@ export default memo(({ id, data }) => {
 
       {/* Dynamic left handles */}
       <div className="w-3/12">
-        {LeftHandles?.map((value, index) => (
+        {LeftHandles?.map((value, index) => {
+                    let handleType = value.split("=")[1]
+                    let Varname = value.split("=")[0]
+                    if (handleType === "string"){
+                      color = "yellow"
+                    }
+                    else if (handleType === "int"){
+                      color = "pink"
+                    }
+                    else if (handleType === "bool"){
+                      color = "green"
+                    }(
           <div key={`container-${index}`}>
             <Handle
               key={`left-${index}-${value}`} // Ensure unique key
@@ -25,7 +37,8 @@ export default memo(({ id, data }) => {
               }}
             />
           </div>
-        ))}
+        )}
+        )}
       </div>
 
       {/* Middle content */}

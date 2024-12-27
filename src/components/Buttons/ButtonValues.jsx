@@ -138,13 +138,13 @@ const buttonValue = {
         "Breakpoint":"",
     },
     "BrowserClose":{
-        "Description": {"value":""}
+        "Description": ""
     },
     "GoBack":{
-        "Description": {"value":""}
+        "Description": ""
     },
     "Maximize":{
-        "Description": {"value":""}
+        "Description": ""
     },
     "DropdownSelection":{
         "Selector Type":"",
@@ -334,7 +334,17 @@ const buttonValue = {
         "Constant Value":"",
         "Comment": "",
         "Breakpoint": "",
-    }
+    },
+    "Createfile":{
+        "Path File":"",
+        "File Name":"",
+        "Description": "",
+    },
+    "Textfileread":{
+        "File Path": "",
+        "Output Variable": "",
+        "Description": "",
+    },
 
 }
 
