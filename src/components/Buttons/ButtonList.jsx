@@ -447,6 +447,18 @@ addNode9: {
     },
   },
   },
+  "operations":{
+    addNode42: {
+      label: 'Constant',
+      nodeProps: {
+        data: { label: 'Constant',...buttonContent.Constant},
+        type:'constantNode',
+        style: { backgroundColor: 'lightblue'},
+        values:{ ...buttonValue.Constant },
+        backgroundColor: 'lightblue' ,
+      },
+    },
+  }
     };
 
 

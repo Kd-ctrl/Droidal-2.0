@@ -18,20 +18,24 @@ export default memo(({ id, data }) => {
         {
         LeftHandles?.map((value, index) => {
           let handleType = value.split("=")[1]
+          let Varname = value.split("=")[0]
           if (handleType === "string"){
             color = "yellow"
           }
           else if (handleType === "int"){
             color = "pink"
           }
+          else if (handleType === "bool"){
+            color = "green"
+          }
          return (
           <div key={`container-${index}`}>
             <Handle
-              key={`left-${index}-${value}`} // Ensure unique key
+              key={`left-${Varname}-${index}`} // Ensure unique key
               type="target"
-              title={`${value}`}
+              title={`${Varname}`}
               position={Position.Left}
-              id={`left-${index}-${value}`} // Unique ID
+              id={`left-${Varname}-${index}`}  // Unique ID
               style={{
                 top: `${(50 / handleQuantity) * (index + 1)}px`,
                 backgroundColor: `${color}`,

@@ -46,31 +46,39 @@ const Search = ({searchVal, setSearchVal}) => {
     //     value={searchVal}
     //     onChange={handleSearchChange}
     //   />
-      <div className="button-container">
-        {Object.keys(filteredSections).map((sectionKey) => {
-          const section = filteredSections[sectionKey];
-          return (
-            <div key={sectionKey} className="section">
-              <div className='header'>{sectionKey}</div>
+<div className="button-container flex flex-wrap gap-4 max-h-[40vh] overflow-y-auto overflow-x-auto">
+  {Object.keys(filteredSections).map((sectionKey) => {
+    const section = filteredSections[sectionKey];
+    return (
+      <div key={sectionKey} className="section flex-shrink-0 w-64">
+        {/* Section header */}
+        <div className="header text-lg font-semibold px-4 py-2 bg-white text-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+  {sectionKey}
+</div>
 
-                {Object.keys(section).map((key) => {
-                  const button = section[key];
-                  return (
-                    <div
-                      key={key}
-                      className="button-card-small"
-                      draggable
-                      onDragStart={(e) => handleDragStart(e, button.nodeProps)}
-                    >
-                      {button.label}
-                    </div>
-                  );
-                })}
 
-            </div>
-          );
-        })}
+        {/* Buttons for the section */}
+        <div className="button-list flex flex-wrap gap-2 mt-2">
+          {Object.keys(section).map((key) => {
+            const button = section[key];
+            return (
+              <div
+                key={key}
+                className="button-card-small p-2 bg-blue-500 text-white rounded-md cursor-pointer text-[10px]"
+                draggable
+                onDragStart={(e) => handleDragStart(e, button.nodeProps)}
+              >
+                {button.label}
+              </div>
+            );
+          })}
+        </div>
       </div>
+    );
+  })}
+</div>
+
+
     // </div>
   );
 };

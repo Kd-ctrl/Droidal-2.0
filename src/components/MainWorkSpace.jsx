@@ -835,7 +835,7 @@ const onConstdrop =useCallback(
       </div>
       
       <div 
-        className="fixed right-0 top-0 h-full border-l border-gray-300 overflow-auto bg-white shadow-lg"
+        className="fixed right-0 top-0 h-20 border-l border-gray-300 overflow-auto bg-white shadow-lg"
         style={{
           ...sideBarsize,
           width: sideBarsize.width,
@@ -891,12 +891,6 @@ const onConstdrop =useCallback(
         )}
 
         </div>
-        {/* <button onClick={handleUndo} disabled={undoStack.length === 0}>
-          Undo
-        </button>
-        <button onClick={handleRedo} disabled={redoStack.length === 0}>
-          Redo
-        </button> */}
               <TopButton 
                 nodes={nodes} 
                 edges={edges} 
