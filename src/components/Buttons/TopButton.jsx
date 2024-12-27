@@ -1,7 +1,7 @@
 import HandleExport from '../Sections/JsonExportBackend';
 import "./css/TopButton.css"
 import importFromJSON from "../Sections/JsonImport";
-import { Copy, Download, Clipboard,TicketCheck } from 'lucide-react';
+import { Copy, Download, Clipboard,TicketCheck, Undo, Redo } from 'lucide-react';
 
 
 
@@ -67,9 +67,13 @@ const copyToClipboard = (nodes, edges) => {
   
   
 
-const TopButton = ({ nodes, edges, setNodes, setEdges }) => {
+const TopButton = ({ nodes, edges, setNodes, setEdges , undo, redo }) => {
   return (
     <div className='TopButtons'>
+      <Undo className="TopValidateButton cursor-pointer w-5 h-5"
+      onClick={() => undo()}/>
+      <Redo className="TopValidateButton cursor-pointer w-5 h-5"
+      onClick={() => redo()}/>
             <TicketCheck 
       className="TopValidateButton cursor-pointer w-5 h-5"
       onClick={() => validateButton(nodes, edges)}/>

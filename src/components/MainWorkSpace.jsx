@@ -33,6 +33,7 @@ import buttonContent from './Buttons/ButtonContent.jsx';
 import buttonValue from './Buttons/ButtonValues.jsx';
 import VariableNode from './Sections/VariableNode.jsx';
 import { useAsyncError } from 'react-router-dom';
+import ArithmaticOperationNode from './Sections/ArithmaticOperationNode.jsx';
 
 const initialNodes = [
   {
@@ -51,7 +52,7 @@ let varnodes = [{
   label: 'Variable',
   data: { label: 'Variable',...buttonContent.Variable},
   type:'variablenode',
-  style: { backgroundColor: 'lightblue'},
+  style: { backgroundColor: 'white'},
   values:{ ...buttonValue.Variable },
 }]
 
@@ -204,6 +205,7 @@ const MainWorkSpace = () => {
     tridirectional:(props)=>(<TriDirectionalNode{...props} edges={edges} />),
     monodir:(props)=>(<NormalNode {...props} edges={edges} updateEdge={updateEdge} handleLabelClick={handleLabelClick}/>),
     computational:(props)=>(<ComputationalNode{...props} edges={edges} />),
+    arithop:(props)=>(<ArithmaticOperationNode{...props}nodes = {nodes} edges={edges}/>),
     constantNode:(props)=>(<ConstantNode{...props}nodes = {nodes} edges={edges}/>),
     variablenode:(props)=>(<VariableNode{...props}nodes = {nodes} edges={edges}/>),
     floatingbutton:(props)=>(<FloatingButtons{...props} edges={edges} nodes={nodes} setNodes={setNodes} setEdges={setEdges} reactFlowInstance = {reactFlowInstance} />),
@@ -311,12 +313,75 @@ const MainWorkSpace = () => {
   
 
 
-  const updateNodes= () =>{
+  const updateInputNodes = () => {
+    // Find all edges where the target handle starts with "left"
+    let edgesToCheck = edges.filter(edge => edge.targetHandle.startsWith("left"));
     
-  }
+    // Loop over all the edges found
+    edgesToCheck.forEach(edge => {
+      // Extract the target name from the target handle (split by "-")
+      let targetname
+      try{
+        targetname = edge.targetHandle.split("-")[1];
+      }
+      catch{
+        targetname = edge.targetHandle;
+      }
+       // Use number 1 as the index
+      
+      // Calculate the target node index
+      const targetNodeIndex = parseInt(edge.target);
+      const sourceNodeIndex = parseInt(edge.source);
+      
+      // Make sure target and source node indices are valid
+      if (targetNodeIndex >= 0 && targetNodeIndex <= nodes.length && sourceNodeIndex >= 0 && sourceNodeIndex <= nodes.length) {
+        const sourceNode = nodes.find(node => node.id === edge.source);
+        const targetNode = nodes.find(node => node.id === edge.target);
+        
+        // Ensure the target node's id matches the calculated target node index
+        if (targetNode.id) {
+          // Ensure the source node has the necessary data and the target node can be updated
+          if (sourceNode.data && sourceNode.data["Variable Name"] && targetNode.data && targetname in targetNode.data) {
+            // Update the target node's value based on the source node's "Variable Value"
+            targetNode.data[targetname].value = sourceNode.data["Variable Name"].value;
+          }
+          else if (sourceNode.data && sourceNode.data["Constant Value"] && targetNode.data && targetname in targetNode.data) {
+            targetNode.data[targetname].value = sourceNode.data["Constant Value"].value;
+          }
+        }
+      }
+    });
+  };
+  
+
+  const updateOutputNodes = () => {
+    let edgesToCheck = edges.filter(edge => edge.targetHandle.startsWith("right"));
+    edgesToCheck.forEach(edge => {
+      let targetname
+      try{
+        targetname = edge.targetHandle.split("-")[1];
+      }
+      catch{
+        targetname = edge.targetHandle;
+      }
+      const targetNodeIndex = parseInt(edge.target);
+      const sourceNodeIndex = parseInt(edge.source);
+      if (targetNodeIndex >= 0 && targetNodeIndex <= nodes.length && sourceNodeIndex >= 0 && sourceNodeIndex <= nodes.length) {
+        let sourceNode = nodes.find(node => node.id === sourceNodeIndex);
+        let targetNode = nodes.find(node => node.id === targetNodeIndex);
+      
+      if (sourceNode.data && sourceNode.data["Variable Name"] && targetNode.data && targetname in targetNode.data) {
+        // Update the target node's value based on the source node's "Variable Value"
+        sourceNode.data["Output Name"].value = targetNode.data[targetname].value;
+      }
+    }
+      
+  });
+}
 
   const onSaveclick = () =>{
-    updateNodes()
+    updateInputNodes()
+    // updateOutputNodes()
     updateEmptyList()
     setSelectedNode(null)
     setSelectedEdge(null)
@@ -429,55 +494,62 @@ const MainWorkSpace = () => {
 
   const onInputDrop = useCallback(
     (event, value) => {
+
+      console.log(nodes)
       let color;
-      if (value === "Int"){
-        color = "#f635ff"
+      if (value === "Int") {
+        color = "#f635ff";
+      } else {
+        color = "#fff635";
       }
-      else{
-        color = "#fff635"
-      }
-      setSelectedNode();
-  
+      setSelectedNode(null);
       setPaneMenuPosition(null);
   
       const position = {
         x: event.clientX,
         y: event.clientY,
       };
-
+  
       let newNode;
-      if (inputType === 'Variable') {
+      if (inputType === "Variable") {
         newNode = structuredClone(varnodes);
-        newNode[0].data['Variable Type'] = newNode[0].data['Variable Type'] || {}; 
-        newNode[0].data['Variable Type']['value'] = value;
-        newNode[0].values['Variable Type'] = value;
-
+        newNode[0].data["Variable Type"] = newNode[0].data["Variable Type"] || {};
+        newNode[0].data["Variable Type"]["value"] = value;
+        newNode[0].values["Variable Type"] = value;
       } else {
         newNode = structuredClone(constnodes);
-        newNode[0].data['Constant Type'] = newNode[0].data['Constant Type'] || {}; 
-        newNode[0].data['Constant Type']['value'] = value;
-        newNode[0].values['Constant Type'] = value;
+        newNode[0].data["Constant Type"] = newNode[0].data["Constant Type"] || {};
+        newNode[0].data["Constant Type"]["value"] = value;
+        newNode[0].values["Constant Type"] = value;
       }
-
+  
+      // Update style immutably
+      newNode[0].style = {
+        ...newNode[0].style,
+        border: `2px solid ${color}`,
+        borderRadius: "unset",
+      };
+  
       setNodes((nds) => {
-        console.log(inputType);
         const updatedNodes = [
           ...nds,
           {
             id: (nds.length + 1).toString(),
             label: newNode[0]?.label,
-            value: newNode[0]?.data?.['Variable Type']?.['value'] || newNode[0]?.data?.['Constant Type']?.['value'] || newNode[0]?.values?.['Variable Type']||newNode[0]?.values?.['Constant Type'],
-            border:newNode[0].style["border"] = `2px solid ${color}`,
-            backgroundColor:newNode[0].style["backgroundColor"] = `${color}`,
-            borderRadius:newNode[0].style["borderRadius"] = "unset",
-            ...newNode[0], 
+            value:
+              newNode[0]?.data?.["Variable Type"]?.["value"] ||
+              newNode[0]?.data?.["Constant Type"]?.["value"] ||
+              newNode[0]?.values?.["Variable Type"] ||
+              newNode[0]?.values?.["Constant Type"],
+            ...newNode[0],
             position: position,
           },
         ];
-  
-        setInputType(null);
+        console.log("Updated Nodes:", updatedNodes); // Debug log
         return updatedNodes;
       });
+  
+      setInputType(null);
     },
     [inputType, setNodes] // Dependencies for useCallback
   );
@@ -547,6 +619,7 @@ const onConstdrop =useCallback(
 
   const onDrop = useCallback(
     (event) => {
+      console.log(nodes, edges)
       captureState(nodes ,edges);
       event.preventDefault();
 
@@ -818,17 +891,19 @@ const onConstdrop =useCallback(
         )}
 
         </div>
-        <button onClick={handleUndo} disabled={undoStack.length === 0}>
+        {/* <button onClick={handleUndo} disabled={undoStack.length === 0}>
           Undo
         </button>
         <button onClick={handleRedo} disabled={redoStack.length === 0}>
           Redo
-        </button>
+        </button> */}
               <TopButton 
                 nodes={nodes} 
                 edges={edges} 
                 setNodes={setNodes} 
                 setEdges={setEdges} 
+                undo = {handleUndo}
+                redo = {handleRedo}
               />
             </div>
 
@@ -842,7 +917,7 @@ const onConstdrop =useCallback(
                 />
               </div>
             </div>
-
+{/* 
             {searchVal === "" ? (
               <div>
                 <SideBarNew />
@@ -865,8 +940,37 @@ const onConstdrop =useCallback(
                 searchVal={searchVal} 
                 setSearchVal={setSearchVal} 
               />
-            )}
+            )} */}
+
+
+
+<div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4">
+    {searchVal === "" ? (
+      <div>
+        <SideBarNew />
+        <div className="flex space-x-2 ">
+          {/* <button 
+            className="flex-grow px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Save
+          </button>
+          <button 
+            onClick={clearAll}
+            className="flex-grow px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+          >
+            Clear All
+          </button> */}
+        </div>
+      </div>
+    ) : (
+      <Search 
+        searchVal={searchVal} 
+        setSearchVal={setSearchVal} 
+      />
+    )}
+  </div>
           </div>
+
         )}
       </div>
     </div>

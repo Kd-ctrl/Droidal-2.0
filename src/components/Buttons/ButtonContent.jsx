@@ -17,7 +17,7 @@ const buttonContent = {
     },
     "OpenBrowser":{
         "Browser Type": {"options":["Chrome","Edge"],"type":"select", "value":""},
-        "Enter URL": {"value":""},
+        "Enter URL": {"value":"", "type":"string"},
         "Browser Width": {"options":["Default","Full Width"],"type":"select", "value":""},
         "Delay (in Seconds)": {"value":""},
         "Comment": "",

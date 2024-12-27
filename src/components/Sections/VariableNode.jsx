@@ -98,7 +98,15 @@ const onVariableTypeBlur = () => {
         style={{ display: "block" }}
       /> */}
 
-      <Handle type="source" position={Position.Right} id="right" />
+      <Handle type="source"       
+       style={{
+          backgroundColor: 'transparent',
+          border: '2px solid #ccc',
+          width: '8px',
+          height: '8px',
+          borderRadius: '50%',
+          transition: 'all 0.2s ease-in-out',
+        }} position={Position.Right} id="right" />
     </div>
   );
 });

@@ -1,30 +1,18 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
- 
+
 export default memo(({ id, data }) => {
-    // const [LeftHandles] = useState(["variables1","variables2"]); 
-    const LeftHandles = data.variableNodes;
-    let handleQuantity = LeftHandles?.length+1
-    let color
+  const LeftHandles = data.variableNodes; // Assumed dynamic input
+  let handleQuantity = LeftHandles?.length + 1;
 
   return (
-    //  <div className='flex'>
-            <div className='MonoDirNode'> 
-{/* Single top handle */}
+    <div className="ArithopNode">
+      {/* Single top handle */}
       <Handle type="target" position={Position.Top} id="top" />
 
       {/* Dynamic left handles */}
       <div className="w-3/12">
-        {
-        LeftHandles?.map((value, index) => {
-          let handleType = value.split("=")[1]
-          if (handleType === "string"){
-            color = "yellow"
-          }
-          else if (handleType === "int"){
-            color = "pink"
-          }
-         return (
+        {LeftHandles?.map((value, index) => (
           <div key={`container-${index}`}>
             <Handle
               key={`left-${index}-${value}`} // Ensure unique key
@@ -33,21 +21,18 @@ export default memo(({ id, data }) => {
               position={Position.Left}
               id={`left-${index}-${value}`} // Unique ID
               style={{
-                top: `${(50 / handleQuantity) * (index + 1)}px`,
-                backgroundColor: `${color}`,
-                border: `2px solid ${color}`,
+                top: `${(30 / handleQuantity) * (index + 1)}px`,
               }}
             />
           </div>
-        )}
-        )}
+        ))}
       </div>
 
       {/* Middle content */}
       <div className="w-3/6">
         {data.image ? (
           <img
-            style={{ width: '50px', height: '50px' }}
+            style={{ width: '30px', height: '30px' }}
             src={data.image}
             alt={data.label}
           />

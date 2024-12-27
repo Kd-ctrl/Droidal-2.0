@@ -1,3 +1,4 @@
+import { Height } from "@mui/icons-material";
 import buttonContent from "./ButtonContent";
 import buttonValue from "./ButtonValues";
 
@@ -18,7 +19,7 @@ const buttonProperties = {
       label: 'Open Browser',
       nodeProps: {
         type:'computational',
-        data: { label: 'Open Browser',...buttonContent.OpenBrowser },
+        data: { label: 'Open Browser',variableNodes : ["Enter URL=string"],...buttonContent.OpenBrowser },
         style: {backgroundColor: 'lightblue'},
         values:{ ...buttonValue.OpenBrowser },
         backgroundColor: 'lightblue',
@@ -408,9 +409,9 @@ addNode9: {
   addNode38 : {
     label: 'Add',
     nodeProps: {
-      type:'computational',
+      type:'arithop',
       data: {variableNodes : ["Variable1","Variable2","Variable3","Variable4"], label:'Add',image:"Plus-sign.png",...buttonContent.Add},
-      style: {backgroundColor: 'white'},
+      style: {backgroundColor: 'white', width: "25px", height: "25px"},
       values:{ ...buttonValue.Add },
       backgroundColor: 'transparent',
     },
