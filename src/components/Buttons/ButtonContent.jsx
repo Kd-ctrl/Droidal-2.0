@@ -396,7 +396,7 @@ const buttonContent = {
         "Y Coordinate": {"value":""},
         "Description": {"value":""},
     },
-    "Clickcoordinatevsimulate":{
+    "Clickcoordinatesimulate":{
         "X Coordinate": {"value":""},
         "Y Coordinate": {"value":""},
         "Description": {"value":""},
@@ -423,6 +423,9 @@ const buttonContent = {
         "Description": {"value":""},
     },
     "Minactivewindow":{
+        "Description": {"value":""},
+    },
+    "Maxactivewindow":{
         "Description": {"value":""},
     },
     "Movepreviouswindow":{
@@ -459,8 +462,139 @@ const buttonContent = {
         "Source Path": {"value":""},
         "Destination Path": {"value":""},
         "Description": {"value":""},
+    },
+    "Killprocess":{
+        "Process Name": {"value":""},
+        "Description": {"value":""},
+    },
+    "Excelconfig":{
+        "Excel Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Getfileline":{
+        "File Path": {"value":""},
+        "Line": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelreadrange":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Read Range": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelwriterange":{
+        "File Path": {"value":""},
+        "Data":{"value":""},
+        "Sheet Name": {"value":""},
+        "Start Cell": {"value":""},
+        "Description": {"value":""},
+    },
+    "Excelwritecell":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Write Cell": {"value":""},
+        "Write Value": {"value":""},
+        "Description": {"value":""},
+    },
+    "Readexcelsheet":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelappendrow":{
+        "Excel Path": {"value":""},
+        "Data": {"value":""},
+        "Sheet Name": {"value":""},
+        "Description": {"value":""},
+    },
+    "Addsheetintoexcel":{
+        "Data": {"value":""},
+        "Existing File Path": {"value":""},
+        "New Sheet Name": {"value":""}, 
+        "Description": {"value":""},
+    },
+    "Excelunhiderows":{
+        "Excel Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Getcellnumberbyvalue":{
+        "Excel Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Search String": {"value":""},
+        "Cell Number": {"value":""},
+        "Column Letter": {"value":""},
+        "Row Number": {"value":""}, 
+        "Description": {"value":""},
+    },
+    "Getsheetname":{
+        "Excel Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Conver_dt_json":{
+        "Excel Path": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelrowcount":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Start Index": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Xlstoxlsx":{
+        "XLS File Path": {"value":""},
+        "XLSX File Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Excelheadermodify":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "New Header": {"value":""},
+        "Customize header": {"options":["Repace Header", "Add Header"],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelcolorcodefilter":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Column Index": {"value":""},
+        "Color Code": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Excelwritecelldepricated":{
+        "File Path": {"value":""},
+        "Data": {"value":""},
+        "Write Value": {"value":""},
+        "Check Value": {"value":""},
+        "Check Column Value": {"value":""},
+        "Write Column": {"value":""},
+        "Description": {"value":""},
+    },
+    "Excelreadcell":{
+        "File Path": {"value":""},
+        "Cell Ref": {"value":""},
+        "Sheet Name": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
+    },
+    "Csvtoexcel":{
+        "CSV File Path": {"value":""},
+        "Excel File Path": {"value":""},
+        "Description": {"value":""},
+    },
+    "Excelcheckboxcheck":{
+        "File Path": {"value":""},
+        "Sheet Name": {"value":""},
+        "Cell Address": {"value":""},
+        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Description": {"value":""},
     }
-    
 
 }
 

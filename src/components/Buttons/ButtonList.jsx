@@ -419,7 +419,7 @@ addNode9: {
 },
 
   "System Activities":{
-    addNode39 : {
+    addNode1 : {
       label: 'Create File',
       nodeProps: {
         type:'arithop',
@@ -429,7 +429,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode40 : {
+    addNode2 : {
       label: 'Text File Read',
       nodeProps: {
         type:'arithop',
@@ -439,7 +439,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode41 : {
+    addNode3 : {
       label: 'Open File',
       nodeProps: {
         type:'arithop',
@@ -449,7 +449,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode42 : {
+    addNode4 : {
       label: 'Msg Box',
       nodeProps: {
         type:'tridirectional',
@@ -459,7 +459,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode43 : {
+    addNode5 : {
       label: 'Msg Box Timer',
       nodeProps: {
         type:'tridirectional',
@@ -469,7 +469,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode44 : {
+    addNode6 : {
       label: 'MFA Code',
       nodeProps: {
         type:'tridirectional',
@@ -479,7 +479,7 @@ addNode9: {
         backgroundColor: 'transparent',
       },
     },
-    addNode45 : {
+    addNode7 : {
       label: 'Copy File',
       nodeProps: {
         type:'bidirectional',
@@ -488,8 +488,380 @@ addNode9: {
         values:{ ...buttonValue.Copyfile },
         backgroundColor: 'transparent',
       },
-    },  
+    },
+    addNodes8 : {
+      label: 'Move File',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Move File',...buttonContent.Movefile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Movefile },
+        backgroundColor: 'transparent',
+      },
+    }, 
+    addNodes9 : {
+      label: 'Click Coordinate',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Click Coordinate',...buttonContent.Clickcoordinate},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Clickcoordinate },
+        backgroundColor: 'transparent',
+      },
+    }, 
+    addNodes10 : {
+      label: 'Click Coordinate simulate',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Click Coordinate simulate',...buttonContent.Clickcoordinatesimulate},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Clickcoordinatesimulate },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes11 : {
+      label: 'Hover Coordinate',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Hover Coordinate',...buttonContent.Hovercoordinate},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Hovercoordinate },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes12 : {
+      label: 'Type Coordinate',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Type Coordinate',...buttonContent.Typecoordinate},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Typecoordinate },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes13 : {
+      label: 'Double Click Coordinate',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Double Click Coordinate',...buttonContent.Doubleclickcoordinate},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Doubleclickcoordinate },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes14 : {
+      label: 'File Exist',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'File Exist',...buttonContent.Fileexist},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Fileexist},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes15 : {
+      label: 'Min Active Window',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Min Active Window',...buttonContent.Minactivewindow},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Minactivewindow },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes16 : {
+      label: 'Max Active Window',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Max Active Window',...buttonContent.Maxactivewindow},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Maxactivewindow },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes17 : {
+      label: 'Move previous Window',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Move previous Window',...buttonContent.Movepreviouswindow},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Movepreviouswindow },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes18 : {
+      label: 'Date Time',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Date Time',...buttonContent.Datetime},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Datetime },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes19 : {
+      label: 'Get Latest File',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Get Latest File',...buttonContent.Getlastestfile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Getlastestfile },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes20 : {
+      label: 'Write Text File',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Write Text File',...buttonContent.writetextfile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.writetextfile },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes21 : {
+      label: 'Keyboard Activity',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Keyboard Activity',...buttonContent.Keyboardactivity},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Keyboardactivity },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes22 : {
+      label: 'Get list of Files',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Get list of Files',...buttonContent.Getlistoffiles},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Getlistoffiles },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes23 : {
+      label: 'Rename File',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Rename File',...buttonContent.Renamefile},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Renamefile},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes24 : {
+      label: 'Kill Process',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Kill Process',...buttonContent.Killprocess},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Killprocess },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes25 : {
+      label: 'Excel Configuration',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Configuration',...buttonContent.Excelconfig},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelconfig },
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes26 : {
+      label: 'Get File Line',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Get File Line',...buttonContent.Getfileline},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Getfileline},
+        backgroundColor: 'transparent',
+      },
+    },
   },
+  "Excel":{
+    addNodes1 : {
+      label: 'Excel Read Range',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Read Range',...buttonContent.Excelreadrange},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelreadrange},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes2 : {
+      label: 'Excel Write Range',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Write Range',...buttonContent.Excelwriterange},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelwriterange},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes3 : {
+      label: 'Excel Write Cell',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Write Cell',...buttonContent.Excelwriterange},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelappendrange},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes4 : {
+      label: 'Excel Read Sheet',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Read Sheet',...buttonContent.Readexcelsheet},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Readexcelsheet},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes5 : {
+      label: 'Excel Append Row',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Append Row',...buttonContent.Excelappendrow},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelappendrow},
+        backgroundColor: 'transparent',
+      },
+    },  
+    addNodes6 : {
+      label: 'Add Sheet in Excel',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Add Sheet in Excel',...buttonContent.Addsheetintoexcel},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Addsheetintoexcel},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes7 : {
+      label: 'Excel Unhide Rows',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel unhide rows',...buttonContent.Excelunhiderows},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelunhiderows},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes8 : {
+      label: 'Get Cell Number By Values',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Get Cell Number By Values',...buttonContent.Getcellnumberbyvalue},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Getcellnumberbyvalue},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes9 : {
+      label: 'Get Sheet Names',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Get Sheet Names',...buttonContent.Getsheetname},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Getsheetname},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes10 : {
+      label: 'Convert Dt to Json',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'onvert Dt to Json',...buttonContent.Conver_dt_json},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Conver_dt_json},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes11 : {
+      label: 'Excel Row Count',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Row Count',...buttonContent.Excelrowcount},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelrowcount},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes12 : {
+      label: 'Xlx to Xlsx',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Xlx to Xlsx',...buttonContent.Xlstoxlsx},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Xlstoxlsx},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes13 : {
+      label: 'Excel Header modify',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Header modify',...buttonContent.Excelheadermodify},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelheadermodify},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes14 : {
+      label: 'Excel Colour Code Filter',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Colour Code Filter',...buttonContent.Excelcolorcodefilter},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelcolorcodefilter},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes15 : {
+      label: 'Excel Write Cell Depricated',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label: 'Excel Write Cell Depricated',...buttonContent.Excelwritecelldepricated},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelwritecelldepricated},
+        backgroundColor: 'transparent',
+      },
+    },
+    addNodes16 : {
+      label: 'Excel Read Cell',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label:'Excel Read Cell',...buttonContent.Excelreadcell},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelreadcell},
+        backgroundColor: 'transparent',
+      },
+    }, 
+    addNodes17 : {
+      label: 'Csv to Excel',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label:'Csv to Excel',...buttonContent.Csvtoexcel},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Csvtoexcel},
+        backgroundColor: 'transparent',
+      },
+    },  
+    addNodes18 : {
+      label: 'Excel Checkbox Check',
+      nodeProps: {
+        type:'bidirectional',
+        data: {image:"Plus-sign.png",label:'Excel Checkbox Check',...buttonContent.Excelcheckboxcheck},
+        style: {backgroundColor: 'white', width: "50px", height: "50px"},
+        values:{ ...buttonValue.Excelcheckboxcheck},
+        backgroundColor: 'transparent',
+      },
+    }, 
+  }
     };
 
 
