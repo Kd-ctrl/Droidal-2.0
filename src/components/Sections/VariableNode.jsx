@@ -68,45 +68,9 @@ const onVariableTypeBlur = () => {
       }}
     >
           {data.label === "Variable" ? (data["Variable Name"]?.value  ? data["Variable Name"].value : data?.label) : null}
-      {/* <select
-        onClick={(evt) => evt.stopPropagation()}
-        value={localVariableType} 
-        onChange={onVariableTypeChange}
-        onBlur={onVariableTypeBlur} 
-        style={{ display: "block", marginBottom: "10px" }}
-      >
-        {data["Variable Type"]?.options?.map((eachOption, index) => (
-          <option key={index} value={eachOption}>
-            {eachOption}
-          </option>
-        ))}
-      </select> */}
-      {/* <input
-        placeholder="Enter Variable Name"
-        onChange={onNameChange}
-        onBlur={onNameBlur}
-        onClick={(evt) => evt.stopPropagation()}
-        value={localValueName}
-        style={{ display: "block", marginBottom: "10px" }}
-      /> */}
-      {/* <input
-        placeholder="Enter Variable Value"
-        onChange={onValueChange}
-        onBlur={onValueBlur}
-        onClick={(evt) => evt.stopPropagation()}
-        value={localValueValue}
-        style={{ display: "block" }}
-      /> */}
 
-      <Handle type="source"       
-       style={{
-          backgroundColor: 'transparent',
-          border: '2px solid #ccc',
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          transition: 'all 0.2s ease-in-out',
-        }} position={Position.Right} id="right" />
+      <Handle type="source" 
+       position={Position.Right} id="right" />
     </div>
   );
 });

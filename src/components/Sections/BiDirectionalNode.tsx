@@ -26,7 +26,10 @@ const BiDirectionalNode = ({ data, id, edges = [] }: NodeProps<BuiltInNode> & { 
       />
 <>
   {data["image"] ? (
+    <>
     <img src={data["image"]} alt="Background" style={{ width: '30px', height: '30px' }} />
+    <div style = {{fontSize :"4px"}}>{data["label"]}</div>
+    </>
   ) : (
     <>{data["label"]}</>
   )}

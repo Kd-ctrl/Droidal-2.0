@@ -104,7 +104,7 @@ const SideBarProperties = ({ selectedNode, updateNodeProperties, changeSize,onDo
     <div className="NodeProperties">
       <div className="NodeBody">
       {Object.keys(nodeData).map((key) => {
-  if (["label", "driver", "Comment", "Breakpoint", "image", "variableNodes"].includes(key)) {
+  if (["label", "driver", "Comment", "Breakpoint", "image", "Output Variable","variableNodes"].includes(key)) {
     return null; // Skip rendering for these keys
   }
 

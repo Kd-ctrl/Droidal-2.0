@@ -52,7 +52,7 @@ let varnodes = [{
   label: 'Variable',
   data: { label: 'Variable',...buttonContent.Variable},
   type:'variablenode',
-  style: { backgroundColor: 'white'},
+  style: { backgroundColor: 'transaparent'},
   values:{ ...buttonValue.Variable },
 }]
 
@@ -61,7 +61,7 @@ let constnodes= [{
   label: 'Constant',
   data: { label: 'Constant',...buttonContent.Constant},
   type:'constantNode',
-  style: { backgroundColor: 'lightblue'},
+  style: { backgroundColor: 'transaparent'},
   values:{ ...buttonValue.Constant },
 }]
 
@@ -359,33 +359,36 @@ const MainWorkSpace = () => {
   
 
   const updateOutputNodes = () => {
-    let edgesToCheck = edges.filter(edge => edge.targetHandle.startsWith("right"));
+    let edgesToCheck = edges.filter(edge => edge.sourceHandle.startsWith("right") && !edge.targetHandle.startsWith("left"));
     edgesToCheck.forEach(edge => {
       let targetname
-      try{
-        targetname = edge.targetHandle.split("-")[1];
-      }
-      catch{
+      let outputvars
         targetname = edge.targetHandle;
-      }
       const targetNodeIndex = parseInt(edge.target);
       const sourceNodeIndex = parseInt(edge.source);
-      if (targetNodeIndex >= 0 && targetNodeIndex <= nodes.length && sourceNodeIndex >= 0 && sourceNodeIndex <= nodes.length) {
-        let sourceNode = nodes.find(node => node.id === sourceNodeIndex);
-        let targetNode = nodes.find(node => node.id === targetNodeIndex);
+      if (targetNodeIndex >= 0 &&  sourceNodeIndex >= 0 ) {
+        let sourceNode = nodes.find(node => node.id === edge.source);
+        let targetNode = nodes.find(node => node.id === edge.target);
+
+      if (sourceNode){
+       outputvars = sourceNode.data.output
+       outputvars.forEach((outputvar) => {
+        if (outputvar){
+          let splittedOutputVar = outputvar.split("=")
+          let outputname = splittedOutputVar[0]
+          sourceNode.data[outputname].value = targetNode.data["Variable Name"].value
+        }
+      })
       
-      if (sourceNode.data && sourceNode.data["Variable Name"] && targetNode.data && targetname in targetNode.data) {
-        // Update the target node's value based on the source node's "Variable Value"
-        sourceNode.data["Output Name"].value = targetNode.data[targetname].value;
-      }
     }
+  }
       
   });
 }
 
   const onSaveclick = () =>{
     updateInputNodes()
-    // updateOutputNodes()
+    updateOutputNodes()
     updateEmptyList()
     setSelectedNode(null)
     setSelectedEdge(null)
@@ -530,8 +533,11 @@ const MainWorkSpace = () => {
       // Update style immutably
       newNode[0].style = {
         ...newNode[0].style,
-        border: `2px solid ${color}`,
+        fontSize:"8px",
+        border: `1px solid ${color}`,
         borderRadius: "unset",
+        width:"auto",
+        height:"15px"
       };
   
       setNodes((nds) => {

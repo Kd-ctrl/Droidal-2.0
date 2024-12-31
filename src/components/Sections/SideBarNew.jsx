@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './css/SideBarNew.css';
 import buttonProperties from '../Buttons/ButtonList.jsx';
 import {ChevronUp, ChevronDown} from 'lucide-react';
+import { Widgets } from '@mui/icons-material';
 
 const SideBarNew = () => {
   // Store the expanded section key
@@ -71,6 +72,7 @@ const SideBarNew = () => {
                             handleDragStart(e, deepCopy(button.nodeProps))
                           }
                         >
+                          <img className="flex justify-center items-center h-12" src={button.nodeProps.data.image} style={{ width: "30px", justifyContent: "center", height: "30px", textAlign:"center" }}></img>
                           {button.label}
                         </div>
                       );

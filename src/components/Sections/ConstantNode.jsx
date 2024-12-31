@@ -99,13 +99,7 @@ const onConstantTypeBlur = () => {
         style={{ display: "block", width:"100px" , height:"10px" }}
       />
 
-      <Handle type="source"        style={{
-          backgroundColor: 'transparent',
-          border: '3px solid #aaa',
-          width: '1px',
-          height: '10px',
-          borderRadius: '50%',
-        }}  position={Position.Right} id="right" />
+      <Handle type="source"  position={Position.Right} id="right" />
     </div>
   );
 });

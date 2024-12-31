@@ -1,5 +1,6 @@
 const buttonValue = {
 
+   
     "Assign":{
         "Variable Type":"",
         "Variable Name":"",
@@ -29,7 +30,7 @@ const buttonValue = {
         "Enter URL":"",
         "Browser Width":"",
         "Delay (in Seconds)":"",
-        "Description":"",
+        "Description":{"value":""},
         "Enter User Data DIR":"",
         "Comment":"",
         "Breakpoint":"",
@@ -94,7 +95,7 @@ const buttonValue = {
         "Comment":"",
         "Breakpoint":"",
     },
-    "MouseHover":{
+    "TimeDelay":{
         "Delay (in Seconds)":"",
         "driver":"",
         "Comment":"",
@@ -138,13 +139,13 @@ const buttonValue = {
         "Breakpoint":"",
     },
     "BrowserClose":{
-        "Description": ""
+        "Description":"",
     },
     "GoBack":{
-        "Description": ""
+        "Description":"",
     },
     "Maximize":{
-        "Description": ""
+        "Description":"",
     },
     "DropdownSelection":{
         "Selector Type":"",
@@ -247,13 +248,14 @@ const buttonValue = {
         "Input String":"",
         "Case Conversion Type":"",
         "Output Variable":"",
+        "Description":"",
         "Comment":"",
         "Breakpoint":"",
     },
     "Dropdown":{
         "Inner Html":"",
         "Outer Html":"",
-        "Value":"", 
+        "Value":"",
         "Name":"",
         "Id":"",
         "Description":"",
@@ -285,7 +287,7 @@ const buttonValue = {
     },
     "Hreffiledownload":{
         "URL":"",
-        "Save Path":"",
+        "Save Path":{"value":""},
         "Description":"",
     },
     "Checkboxactiveinactive":{
@@ -320,31 +322,271 @@ const buttonValue = {
         "Comment":"",
         "Breakpoint":"",
         "driver":"",
+    },  
+    "Add":{
+        "Variable1":"",
+        "Variable2":"",
+        "Variable3":"",
+        "Variable4":"",
+        "Description":"",
+        "Comment":"",
+        "Breakpoint":"",
     },
     "Variable":{
-        "Variable Type": "",
+        "Variable Type":"",
         "Variable Name":"",
         "Variable Value":"",
-        "Comment": "",
-        "Breakpoint": "",
-    }
-    ,
+        "Comment":"",
+        "Breakpoint":"",
+    },
     "Constant":{
         "Constant Type":"",
         "Constant Value":"",
-        "Comment": "",
-        "Breakpoint": "",
+        "Comment":"",
+        "Breakpoint":"",
     },
     "Createfile":{
         "Path File":"",
         "File Name":"",
-        "Description": "",
+        "Description":"",
     },
     "Textfileread":{
-        "File Path": "",
-        "Output Variable": "",
-        "Description": "",
+        "File Path":"",
+        "Output Variable":"",
+        "Description":"",
     },
+    "Openfile":{
+        "Path":"",
+        "Description":"",
+    },
+    "Msgbox":{
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Msgboxtimer":{
+        "Output Variable":"",
+        "Delay (in Seconds)":"",
+        "Description":"",
+    },
+    "Mfacode":{
+        "Tokens":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Copyfile":{
+        "Source Path":"",
+        "Destination Path":"",
+        "Description":"",
+    },
+    "Movefile":{
+        "Source Path":"",
+        "Destination Path":"",
+        "Description":"",
+    },
+    "Clickcoordinate":{
+        "X Coordinate":"",
+        "Y Coordinate":"",
+        "Description":"",
+    },
+    "Clickcoordinatesimulate":{
+        "X Coordinate":"",
+        "Y Coordinate":"",
+        "Description":"",
+    },
+    "Hovercoordinate":{
+        "X Coordinate":"",
+        "Y Coordinate":"",
+        "Description":"",
+    },
+    "Typecoordinate":{
+        "X Coordinate":"",
+        "Y Coordinate":"",
+        "Send Keys":"",
+        "Description":"",
+    },
+    "Doubleclickcoordinate":{
+        "X Coordinate":"",
+        "Y Coordinate":"",
+        "Description":"",
+    },
+    "Fileexist":{
+        "File Path":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Minactivewindow":{
+        "Description":"",
+    },
+    "Maxactivewindow":{
+        "Description":"",
+    },
+    "Movepreviouswindow":{
+        "Description":"",
+    },
+    "Datetime":{
+        "Expression":"",
+        "Type":{"value":""},
+        "Value":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Getlastestfile":{
+        "File Path":"",
+        "File Type":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "writetextfile":{
+        "File Path":"",
+        "Content":"",
+        "Description":"",
+    },
+    "Keyboardactivity":{
+        "Value":"",
+        "Description":"",
+    }, 
+    "Getlistoffiles":{
+        "Folder Path":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Renamefile":{
+        "Source Path":"",
+        "Destination Path":"",
+        "Description":"",
+    },
+    "Killprocess":{
+        "Process Name":"",
+        "Description":"",
+    },
+    "Excelconfig":{
+        "Excel Path":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Getfileline":{
+        "File Path":"",
+        "Line":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Excelreadrange":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Read Range":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Excelwriterange":{
+        "File Path":"",
+        "Data":{"value":""},
+        "Sheet Name":"",
+        "Start Cell":"",
+        "Description":"",
+    },
+    "Excelwritecell":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Write Cell":"",
+        "Write Value":"",
+        "Description":"",
+    },
+    "Readexcelsheet":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Excelappendrow":{
+        "Excel Path":"",
+        "Data":"",
+        "Sheet Name":"",
+        "Description":"",
+    },
+    "Addsheetintoexcel":{
+        "Data":"",
+        "Existing File Path":"",
+        "New Sheet Name":"",
+        "Description":"",
+    },
+    "Excelunhiderows":{
+        "Excel Path":"",
+        "Description":"",
+    },
+    "Getcellnumberbyvalue":{
+        "Excel Path":"",
+        "Sheet Name":"",
+        "Search String":"",
+        "Cell Number":"",
+        "Column Letter":"",
+        "Row Number":"",
+        "Description":"",
+    },
+    "Getsheetname":{
+        "Excel Path":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Conver_dt_json":{
+        "Input DataTable":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Excelrowcount":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Start Index":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Xlstoxlsx":{
+        "XLS File Path":"",
+        "XLSX File Path":"",
+        "Description":"",
+    },
+    "Excelheadermodify":{
+        "File Path":"",
+        "Sheet Name":"",
+        "New Header":"",
+        "Customize header":"",
+        "Description":"",
+    },
+    "Excelcolorcodefilter":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Column Index":"",
+        "Color Code":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Excelwritecelldepricated":{
+        "File Path":"",
+        "Data":"",
+        "Write Value":"",
+        "Check Value":"",
+        "Check Column Value":"",
+        "Write Column":"",
+        "Description":"",
+    },
+    "Excelreadcell":{
+        "File Path":"",
+        "Cell Ref":"",
+        "Sheet Name":"",
+        "Output Variable":"",
+        "Description":"",
+    },
+    "Csvtoexcel":{
+        "CSV File Path":"",
+        "Excel File Path":"",
+        "Description":"",
+    },
+    "Excelcheckboxcheck":{
+        "File Path":"",
+        "Sheet Name":"",
+        "Cell Address":"",
+        "Output Variable":"",
+        "Description":"",
+    }
 
 }
 

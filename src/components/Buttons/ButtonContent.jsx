@@ -67,7 +67,7 @@ const buttonContent = {
         "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
         "Enter Text": {"value":""},
         "Delay (in Seconds)": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
         "Comment": "",
@@ -104,7 +104,7 @@ const buttonContent = {
         "Comment": "",
         "Breakpoint": "",
     },
-    "MouseHover":{
+    "TimeDelay":{
         "Delay (in Seconds)": {"value":""},
         "driver": "driver",
         "Comment": "",
@@ -131,7 +131,7 @@ const buttonContent = {
         "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
         "Enter Value": {"value":""},
         "Enter Timeout":{"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
         "Comment": "",
         "Breakpoint": "",
@@ -142,7 +142,7 @@ const buttonContent = {
         "Enter Text": {"value":""},
         "Delay (in Seconds)": {"value":""},
         "driver": "driver",
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
         "Comment": "",
         "Breakpoint": "",
@@ -171,7 +171,7 @@ const buttonContent = {
         "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
         "Selector Tool": {"options":["X Path Selector"],"type":"select", "value":""},
         "Value": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Delay (in Seconds)": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
@@ -182,7 +182,7 @@ const buttonContent = {
         "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
         "Selector Tool": {"options":["X Path Selector"],"type":"select", "value":""},
         "Value": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Delay (in Seconds)": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
@@ -225,7 +225,7 @@ const buttonContent = {
         "Selector Type": {"options":["X Path","ID","Name","Class","Tag Name"],"type":"select", "value":""},
         "Selector Tool": {"options":["X Path Selector"],"type":"select", "value":""},
         "Enter Xpath": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Delay (in Seconds)": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
@@ -242,7 +242,7 @@ const buttonContent = {
         "Disable Element":{"value":""},
         "Attribute Name":{"value":""},
         "Attribute Value":{"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
         "Comment": "",
@@ -256,14 +256,15 @@ const buttonContent = {
    "Stringcaseconversion":{
         "Input String": {"value":""},
         "Case Conversion Type": {"options":["X Path Selector"],"type":"select", "value":""},
-        "Output Variable": {"options":["Upper","Lower","Capitalize","Swapcase","Title","Casefold",]},        "Description": {"value":""},
+        "Output Variable": {"options":["Upper","Lower","Capitalize","Swapcase","Title","Casefold",]},
+        "Description": {"value":""},
         "Comment": "",
         "Breakpoint": "",
     },
     "Dropdown":{
         "Inner Html": {"value":"","type":"long text",},
         "Outer Html": {"value":"","type":"long text",},
-        "Value": {"value":""}, 
+        "Value": {"value":""},
         "Name": {"value":""},
         "Id": {"value":""},
         "Description": {"value":""},
@@ -276,7 +277,7 @@ const buttonContent = {
         "Value": {"value":""},
         "Attribute Name": {"options":["innerHTML","outerHTML","value","name","id","Disabled"],"type":"select", "value":""},
         "Delay (in Seconds)": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "driver": "driver",
         "Description": {"value":""},
         "Comment": "",
@@ -360,7 +361,7 @@ const buttonContent = {
     },
     "Textfileread":{
         "File Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Openfile":{
@@ -368,17 +369,17 @@ const buttonContent = {
         "Description": {"value":""},
     },
     "Msgbox":{
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Msgboxtimer":{
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Delay (in Seconds)": {"value":""},
         "Description": {"value":""},
     },
     "Mfacode":{
         "Tokens": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Copyfile":{
@@ -419,7 +420,7 @@ const buttonContent = {
     },
     "Fileexist":{
         "File Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Minactivewindow":{
@@ -435,13 +436,13 @@ const buttonContent = {
         "Expression": {"value":""},
         "Type":{"value":""},
         "Value": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Getlastestfile":{
         "File Path": {"value":""},
         "File Type":{"options":[".pdf",".xlsx",".csv",".docx",".dox",".png","jpg",".jpeg"],"type":"select", "value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "writetextfile":{
@@ -455,7 +456,7 @@ const buttonContent = {
     }, 
     "Getlistoffiles":{
         "Folder Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Renamefile":{
@@ -469,20 +470,20 @@ const buttonContent = {
     },
     "Excelconfig":{
         "Excel Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Getfileline":{
         "File Path": {"value":""},
         "Line": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Excelreadrange":{
         "File Path": {"value":""},
         "Sheet Name": {"value":""},
         "Read Range": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Excelwriterange":{
@@ -502,7 +503,7 @@ const buttonContent = {
     "Readexcelsheet":{
         "File Path": {"value":""},
         "Sheet Name": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Excelappendrow":{
@@ -532,19 +533,19 @@ const buttonContent = {
     },
     "Getsheetname":{
         "Excel Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Conver_dt_json":{
-        "Excel Path": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Input DataTable": {"value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Excelrowcount":{
         "File Path": {"value":""},
         "Sheet Name": {"value":""},
         "Start Index": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Xlstoxlsx":{
@@ -564,7 +565,7 @@ const buttonContent = {
         "Sheet Name": {"value":""},
         "Column Index": {"value":""},
         "Color Code": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Excelwritecelldepricated":{
@@ -580,7 +581,7 @@ const buttonContent = {
         "File Path": {"value":""},
         "Cell Ref": {"value":""},
         "Sheet Name": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     },
     "Csvtoexcel":{
@@ -592,7 +593,7 @@ const buttonContent = {
         "File Path": {"value":""},
         "Sheet Name": {"value":""},
         "Cell Address": {"value":""},
-        "Output Variable": {"options":[],"type":"select", "value":""},
+        "Output Variable": {"value":""},
         "Description": {"value":""},
     }
 
